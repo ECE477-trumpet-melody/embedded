@@ -113,7 +113,6 @@ int main(void)
 
   //HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass + 44), 3297);
   HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2 + 44), 16384);
-  //HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2_32 + 44), 16384);
 
 
   /* USER CODE END 2 */
