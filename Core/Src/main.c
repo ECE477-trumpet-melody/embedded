@@ -18,9 +18,11 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "usb_device.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "usbd_hid.h"
 
 /* USER CODE END Includes */
 
@@ -48,12 +50,13 @@ DMA_HandleTypeDef hdma_spi2_tx;
 
 UART_HandleTypeDef huart2;
 
-PCD_HandleTypeDef hpcd_USB_OTG_FS;
-
 /* USER CODE BEGIN PV */
+
+extern USBD_HandleTypeDef hUsbDeviceFS;
 
 uint16_t adc_out[64];
 uint16_t adc_avg;
+uint8_t input_buff[4] = {0};	//Buffer for holding inputs to send to the computer
 
 /* USER CODE END PV */
 
@@ -64,7 +67,6 @@ static void MX_DMA_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_I2S2_Init(void);
-static void MX_USB_OTG_FS_PCD_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -106,7 +108,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_ADC1_Init();
   MX_I2S2_Init();
-  MX_USB_OTG_FS_PCD_Init();
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&adc_out, 64);
@@ -128,22 +130,37 @@ int main(void)
 	//Configure PC10 to light up the yellow LED (0 means the button is pressed)
 	if(HAL_GPIO_ReadPin(GPIOC, Grey_Button_Pin) == GPIO_PIN_RESET) {
 		HAL_GPIO_WritePin(GPIOC, Yellow_Led_Pin, GPIO_PIN_SET);
+
+		//This button is going to be MB1, so it goes in the 0th location in the first byte of the
+		//buffer
+		input_buff[0] |= 0x1;
 	} else {
 		HAL_GPIO_WritePin(GPIOC, Yellow_Led_Pin, GPIO_PIN_RESET);
+
+		//Clear the value in the first position
+		input_buff[0] &= ~(0x1);
 	}
 
 	//Configure PC10 to light up the yellow LED (0 means the button is pressed)
 	if(HAL_GPIO_ReadPin(GPIOC, Red_Button_Pin) == GPIO_PIN_RESET) {
 		HAL_GPIO_WritePin(GPIOC, Red_Led_Pin, GPIO_PIN_SET);
+
+		input_buff[0] |= 0x2;
 	} else {
 		HAL_GPIO_WritePin(GPIOC, Red_Led_Pin, GPIO_PIN_RESET);
+
+		input_buff[0] &= ~(0x2);
 	}
 
 	//Configure PC10 to light up the yellow LED (0 means the button is pressed)
 	if(HAL_GPIO_ReadPin(GPIOC, Green_Button_Pin) == GPIO_PIN_RESET) {
 		HAL_GPIO_WritePin(GPIOC, Green_Led_Pin, GPIO_PIN_SET);
+
+		input_buff[0] |= 0x4;
 	} else {
 		HAL_GPIO_WritePin(GPIOC, Green_Led_Pin, GPIO_PIN_RESET);
+
+		input_buff[0] &= ~(0x4);
 	}
 
 	// Average the array of adc_out values
@@ -153,8 +170,16 @@ int main(void)
 	}
 	adc_avg = adc_sum >> 6;  //This divides by 64
 
+	// Normalize the value from the adc so it is a signed value between -128 and 127
+	uint16_t xaxis_unsigned = adc_avg >> 4; //This divides by 16
+	int8_t xaxis_signed = xaxis_unsigned - 128;
+	input_buff[1] = xaxis_signed;
+
+	//Send the current buffer to the computer
+	USBD_HID_SendReport(&hUsbDeviceFS, input_buff, 4);
+
 	//Add a short delay
-	HAL_Delay (1);
+	HAL_Delay (10);
   }
   /* USER CODE END 3 */
 }
@@ -322,41 +347,6 @@ static void MX_USART2_UART_Init(void)
   /* USER CODE BEGIN USART2_Init 2 */
 
   /* USER CODE END USART2_Init 2 */
-
-}
-
-/**
-  * @brief USB_OTG_FS Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USB_OTG_FS_PCD_Init(void)
-{
-
-  /* USER CODE BEGIN USB_OTG_FS_Init 0 */
-
-  /* USER CODE END USB_OTG_FS_Init 0 */
-
-  /* USER CODE BEGIN USB_OTG_FS_Init 1 */
-
-  /* USER CODE END USB_OTG_FS_Init 1 */
-  hpcd_USB_OTG_FS.Instance = USB_OTG_FS;
-  hpcd_USB_OTG_FS.Init.dev_endpoints = 4;
-  hpcd_USB_OTG_FS.Init.speed = PCD_SPEED_FULL;
-  hpcd_USB_OTG_FS.Init.dma_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.phy_itface = PCD_PHY_EMBEDDED;
-  hpcd_USB_OTG_FS.Init.Sof_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.low_power_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.lpm_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.vbus_sensing_enable = DISABLE;
-  hpcd_USB_OTG_FS.Init.use_dedicated_ep1 = DISABLE;
-  if (HAL_PCD_Init(&hpcd_USB_OTG_FS) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USB_OTG_FS_Init 2 */
-
-  /* USER CODE END USB_OTG_FS_Init 2 */
 
 }
 
