@@ -41,11 +41,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  18 .debug_line   0001745c  00000000  00000000  00064381  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    00097512  00000000  00000000  0007b7dd  2**0
+ 19 .debug_str    000974f6  00000000  00000000  0007b7dd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  000043cc  00000000  00000000  00112cf0  2**2
+ 20 .debug_frame  000043cc  00000000  00000000  00112cd4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000078  00000000  00000000  001170bc  2**0
+ 21 .debug_line_str 0000005c  00000000  00000000  001170a0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -399,132 +399,134 @@ int main(void)
  80004fc:	494d      	ldr	r1, [pc, #308]	; (8000634 <main+0x160>)
  80004fe:	484e      	ldr	r0, [pc, #312]	; (8000638 <main+0x164>)
  8000500:	f000 fd86 	bl	8001010 <HAL_ADC_Start_DMA>
-
-  //HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass + 44), 3297);
-  HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2 + 44), 16384);
- 8000504:	4b4d      	ldr	r3, [pc, #308]	; (800063c <main+0x168>)
- 8000506:	f44f 4280 	mov.w	r2, #16384	; 0x4000
- 800050a:	4619      	mov	r1, r3
- 800050c:	484c      	ldr	r0, [pc, #304]	; (8000640 <main+0x16c>)
- 800050e:	f002 f8b5 	bl	800267c <HAL_I2S_Transmit_DMA>
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 
 	//Configure PC10 to light up the yellow LED (0 means the button is pressed)
 	if(HAL_GPIO_ReadPin(GPIOC, Grey_Button_Pin) == GPIO_PIN_RESET) {
- 8000512:	f44f 6180 	mov.w	r1, #1024	; 0x400
- 8000516:	484b      	ldr	r0, [pc, #300]	; (8000644 <main+0x170>)
- 8000518:	f001 ff3e 	bl	8002398 <HAL_GPIO_ReadPin>
- 800051c:	4603      	mov	r3, r0
- 800051e:	2b00      	cmp	r3, #0
- 8000520:	d10c      	bne.n	800053c <main+0x68>
+ 8000504:	f44f 6180 	mov.w	r1, #1024	; 0x400
+ 8000508:	484c      	ldr	r0, [pc, #304]	; (800063c <main+0x168>)
+ 800050a:	f001 ff45 	bl	8002398 <HAL_GPIO_ReadPin>
+ 800050e:	4603      	mov	r3, r0
+ 8000510:	2b00      	cmp	r3, #0
+ 8000512:	d10c      	bne.n	800052e <main+0x5a>
 		HAL_GPIO_WritePin(GPIOC, Yellow_Led_Pin, GPIO_PIN_SET);
- 8000522:	2201      	movs	r2, #1
- 8000524:	2104      	movs	r1, #4
- 8000526:	4847      	ldr	r0, [pc, #284]	; (8000644 <main+0x170>)
- 8000528:	f001 ff4e 	bl	80023c8 <HAL_GPIO_WritePin>
+ 8000514:	2201      	movs	r2, #1
+ 8000516:	2104      	movs	r1, #4
+ 8000518:	4848      	ldr	r0, [pc, #288]	; (800063c <main+0x168>)
+ 800051a:	f001 ff55 	bl	80023c8 <HAL_GPIO_WritePin>
 
 		//This button is going to be MB1, so it goes in the 0th location in the first byte of the
 		//buffer
 		input_buff[0] |= 0x1;
- 800052c:	4b46      	ldr	r3, [pc, #280]	; (8000648 <main+0x174>)
- 800052e:	781b      	ldrb	r3, [r3, #0]
- 8000530:	f043 0301 	orr.w	r3, r3, #1
- 8000534:	b2da      	uxtb	r2, r3
- 8000536:	4b44      	ldr	r3, [pc, #272]	; (8000648 <main+0x174>)
- 8000538:	701a      	strb	r2, [r3, #0]
- 800053a:	e00b      	b.n	8000554 <main+0x80>
+ 800051e:	4b48      	ldr	r3, [pc, #288]	; (8000640 <main+0x16c>)
+ 8000520:	781b      	ldrb	r3, [r3, #0]
+ 8000522:	f043 0301 	orr.w	r3, r3, #1
+ 8000526:	b2da      	uxtb	r2, r3
+ 8000528:	4b45      	ldr	r3, [pc, #276]	; (8000640 <main+0x16c>)
+ 800052a:	701a      	strb	r2, [r3, #0]
+ 800052c:	e00b      	b.n	8000546 <main+0x72>
 	} else {
 		HAL_GPIO_WritePin(GPIOC, Yellow_Led_Pin, GPIO_PIN_RESET);
- 800053c:	2200      	movs	r2, #0
- 800053e:	2104      	movs	r1, #4
- 8000540:	4840      	ldr	r0, [pc, #256]	; (8000644 <main+0x170>)
- 8000542:	f001 ff41 	bl	80023c8 <HAL_GPIO_WritePin>
+ 800052e:	2200      	movs	r2, #0
+ 8000530:	2104      	movs	r1, #4
+ 8000532:	4842      	ldr	r0, [pc, #264]	; (800063c <main+0x168>)
+ 8000534:	f001 ff48 	bl	80023c8 <HAL_GPIO_WritePin>
 
 		//Clear the value in the first position
 		input_buff[0] &= ~(0x1);
- 8000546:	4b40      	ldr	r3, [pc, #256]	; (8000648 <main+0x174>)
- 8000548:	781b      	ldrb	r3, [r3, #0]
- 800054a:	f023 0301 	bic.w	r3, r3, #1
- 800054e:	b2da      	uxtb	r2, r3
- 8000550:	4b3d      	ldr	r3, [pc, #244]	; (8000648 <main+0x174>)
- 8000552:	701a      	strb	r2, [r3, #0]
+ 8000538:	4b41      	ldr	r3, [pc, #260]	; (8000640 <main+0x16c>)
+ 800053a:	781b      	ldrb	r3, [r3, #0]
+ 800053c:	f023 0301 	bic.w	r3, r3, #1
+ 8000540:	b2da      	uxtb	r2, r3
+ 8000542:	4b3f      	ldr	r3, [pc, #252]	; (8000640 <main+0x16c>)
+ 8000544:	701a      	strb	r2, [r3, #0]
 	}
 
 	//Configure PC10 to light up the yellow LED (0 means the button is pressed)
 	if(HAL_GPIO_ReadPin(GPIOC, Red_Button_Pin) == GPIO_PIN_RESET) {
- 8000554:	f44f 6100 	mov.w	r1, #2048	; 0x800
- 8000558:	483a      	ldr	r0, [pc, #232]	; (8000644 <main+0x170>)
- 800055a:	f001 ff1d 	bl	8002398 <HAL_GPIO_ReadPin>
- 800055e:	4603      	mov	r3, r0
- 8000560:	2b00      	cmp	r3, #0
- 8000562:	d10c      	bne.n	800057e <main+0xaa>
+ 8000546:	f44f 6100 	mov.w	r1, #2048	; 0x800
+ 800054a:	483c      	ldr	r0, [pc, #240]	; (800063c <main+0x168>)
+ 800054c:	f001 ff24 	bl	8002398 <HAL_GPIO_ReadPin>
+ 8000550:	4603      	mov	r3, r0
+ 8000552:	2b00      	cmp	r3, #0
+ 8000554:	d10c      	bne.n	8000570 <main+0x9c>
 		HAL_GPIO_WritePin(GPIOC, Red_Led_Pin, GPIO_PIN_SET);
- 8000564:	2201      	movs	r2, #1
- 8000566:	2102      	movs	r1, #2
- 8000568:	4836      	ldr	r0, [pc, #216]	; (8000644 <main+0x170>)
- 800056a:	f001 ff2d 	bl	80023c8 <HAL_GPIO_WritePin>
+ 8000556:	2201      	movs	r2, #1
+ 8000558:	2102      	movs	r1, #2
+ 800055a:	4838      	ldr	r0, [pc, #224]	; (800063c <main+0x168>)
+ 800055c:	f001 ff34 	bl	80023c8 <HAL_GPIO_WritePin>
 
 		input_buff[0] |= 0x2;
- 800056e:	4b36      	ldr	r3, [pc, #216]	; (8000648 <main+0x174>)
- 8000570:	781b      	ldrb	r3, [r3, #0]
- 8000572:	f043 0302 	orr.w	r3, r3, #2
- 8000576:	b2da      	uxtb	r2, r3
- 8000578:	4b33      	ldr	r3, [pc, #204]	; (8000648 <main+0x174>)
- 800057a:	701a      	strb	r2, [r3, #0]
- 800057c:	e00b      	b.n	8000596 <main+0xc2>
+ 8000560:	4b37      	ldr	r3, [pc, #220]	; (8000640 <main+0x16c>)
+ 8000562:	781b      	ldrb	r3, [r3, #0]
+ 8000564:	f043 0302 	orr.w	r3, r3, #2
+ 8000568:	b2da      	uxtb	r2, r3
+ 800056a:	4b35      	ldr	r3, [pc, #212]	; (8000640 <main+0x16c>)
+ 800056c:	701a      	strb	r2, [r3, #0]
+ 800056e:	e00b      	b.n	8000588 <main+0xb4>
+
+
 	} else {
 		HAL_GPIO_WritePin(GPIOC, Red_Led_Pin, GPIO_PIN_RESET);
- 800057e:	2200      	movs	r2, #0
- 8000580:	2102      	movs	r1, #2
- 8000582:	4830      	ldr	r0, [pc, #192]	; (8000644 <main+0x170>)
- 8000584:	f001 ff20 	bl	80023c8 <HAL_GPIO_WritePin>
+ 8000570:	2200      	movs	r2, #0
+ 8000572:	2102      	movs	r1, #2
+ 8000574:	4831      	ldr	r0, [pc, #196]	; (800063c <main+0x168>)
+ 8000576:	f001 ff27 	bl	80023c8 <HAL_GPIO_WritePin>
 
 		input_buff[0] &= ~(0x2);
- 8000588:	4b2f      	ldr	r3, [pc, #188]	; (8000648 <main+0x174>)
- 800058a:	781b      	ldrb	r3, [r3, #0]
- 800058c:	f023 0302 	bic.w	r3, r3, #2
- 8000590:	b2da      	uxtb	r2, r3
- 8000592:	4b2d      	ldr	r3, [pc, #180]	; (8000648 <main+0x174>)
- 8000594:	701a      	strb	r2, [r3, #0]
+ 800057a:	4b31      	ldr	r3, [pc, #196]	; (8000640 <main+0x16c>)
+ 800057c:	781b      	ldrb	r3, [r3, #0]
+ 800057e:	f023 0302 	bic.w	r3, r3, #2
+ 8000582:	b2da      	uxtb	r2, r3
+ 8000584:	4b2e      	ldr	r3, [pc, #184]	; (8000640 <main+0x16c>)
+ 8000586:	701a      	strb	r2, [r3, #0]
 	}
 
 	//Configure PC10 to light up the yellow LED (0 means the button is pressed)
 	if(HAL_GPIO_ReadPin(GPIOC, Green_Button_Pin) == GPIO_PIN_RESET) {
- 8000596:	f44f 5180 	mov.w	r1, #4096	; 0x1000
- 800059a:	482a      	ldr	r0, [pc, #168]	; (8000644 <main+0x170>)
- 800059c:	f001 fefc 	bl	8002398 <HAL_GPIO_ReadPin>
- 80005a0:	4603      	mov	r3, r0
- 80005a2:	2b00      	cmp	r3, #0
- 80005a4:	d10c      	bne.n	80005c0 <main+0xec>
+ 8000588:	f44f 5180 	mov.w	r1, #4096	; 0x1000
+ 800058c:	482b      	ldr	r0, [pc, #172]	; (800063c <main+0x168>)
+ 800058e:	f001 ff03 	bl	8002398 <HAL_GPIO_ReadPin>
+ 8000592:	4603      	mov	r3, r0
+ 8000594:	2b00      	cmp	r3, #0
+ 8000596:	d113      	bne.n	80005c0 <main+0xec>
 		HAL_GPIO_WritePin(GPIOC, Green_Led_Pin, GPIO_PIN_SET);
- 80005a6:	2201      	movs	r2, #1
- 80005a8:	2101      	movs	r1, #1
- 80005aa:	4826      	ldr	r0, [pc, #152]	; (8000644 <main+0x170>)
- 80005ac:	f001 ff0c 	bl	80023c8 <HAL_GPIO_WritePin>
+ 8000598:	2201      	movs	r2, #1
+ 800059a:	2101      	movs	r1, #1
+ 800059c:	4827      	ldr	r0, [pc, #156]	; (800063c <main+0x168>)
+ 800059e:	f001 ff13 	bl	80023c8 <HAL_GPIO_WritePin>
 
 		input_buff[0] |= 0x4;
- 80005b0:	4b25      	ldr	r3, [pc, #148]	; (8000648 <main+0x174>)
- 80005b2:	781b      	ldrb	r3, [r3, #0]
- 80005b4:	f043 0304 	orr.w	r3, r3, #4
- 80005b8:	b2da      	uxtb	r2, r3
- 80005ba:	4b23      	ldr	r3, [pc, #140]	; (8000648 <main+0x174>)
- 80005bc:	701a      	strb	r2, [r3, #0]
+ 80005a2:	4b27      	ldr	r3, [pc, #156]	; (8000640 <main+0x16c>)
+ 80005a4:	781b      	ldrb	r3, [r3, #0]
+ 80005a6:	f043 0304 	orr.w	r3, r3, #4
+ 80005aa:	b2da      	uxtb	r2, r3
+ 80005ac:	4b24      	ldr	r3, [pc, #144]	; (8000640 <main+0x16c>)
+ 80005ae:	701a      	strb	r2, [r3, #0]
+
+		//Also play the trumpet sound
+		HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2 + 44), 16384);
+ 80005b0:	4b24      	ldr	r3, [pc, #144]	; (8000644 <main+0x170>)
+ 80005b2:	f44f 4280 	mov.w	r2, #16384	; 0x4000
+ 80005b6:	4619      	mov	r1, r3
+ 80005b8:	4823      	ldr	r0, [pc, #140]	; (8000648 <main+0x174>)
+ 80005ba:	f002 f85f 	bl	800267c <HAL_I2S_Transmit_DMA>
  80005be:	e00b      	b.n	80005d8 <main+0x104>
 	} else {
 		HAL_GPIO_WritePin(GPIOC, Green_Led_Pin, GPIO_PIN_RESET);
  80005c0:	2200      	movs	r2, #0
  80005c2:	2101      	movs	r1, #1
- 80005c4:	481f      	ldr	r0, [pc, #124]	; (8000644 <main+0x170>)
+ 80005c4:	481d      	ldr	r0, [pc, #116]	; (800063c <main+0x168>)
  80005c6:	f001 feff 	bl	80023c8 <HAL_GPIO_WritePin>
 
 		input_buff[0] &= ~(0x4);
- 80005ca:	4b1f      	ldr	r3, [pc, #124]	; (8000648 <main+0x174>)
+ 80005ca:	4b1d      	ldr	r3, [pc, #116]	; (8000640 <main+0x16c>)
  80005cc:	781b      	ldrb	r3, [r3, #0]
  80005ce:	f023 0304 	bic.w	r3, r3, #4
  80005d2:	b2da      	uxtb	r2, r3
- 80005d4:	4b1c      	ldr	r3, [pc, #112]	; (8000648 <main+0x174>)
+ 80005d4:	4b1a      	ldr	r3, [pc, #104]	; (8000640 <main+0x16c>)
  80005d6:	701a      	strb	r2, [r3, #0]
 	}
 
@@ -573,13 +575,13 @@ int main(void)
  8000618:	717b      	strb	r3, [r7, #5]
 	input_buff[1] = xaxis_signed;
  800061a:	797a      	ldrb	r2, [r7, #5]
- 800061c:	4b0a      	ldr	r3, [pc, #40]	; (8000648 <main+0x174>)
+ 800061c:	4b08      	ldr	r3, [pc, #32]	; (8000640 <main+0x16c>)
  800061e:	705a      	strb	r2, [r3, #1]
 
 	//Send the current buffer to the computer
 	USBD_HID_SendReport(&hUsbDeviceFS, input_buff, 4);
  8000620:	2204      	movs	r2, #4
- 8000622:	4909      	ldr	r1, [pc, #36]	; (8000648 <main+0x174>)
+ 8000622:	4907      	ldr	r1, [pc, #28]	; (8000640 <main+0x16c>)
  8000624:	480a      	ldr	r0, [pc, #40]	; (8000650 <main+0x17c>)
  8000626:	f006 fc6d 	bl	8006f04 <USBD_HID_SendReport>
 
@@ -588,14 +590,14 @@ int main(void)
  800062a:	200a      	movs	r0, #10
  800062c:	f000 fc88 	bl	8000f40 <HAL_Delay>
   {
- 8000630:	e76f      	b.n	8000512 <main+0x3e>
+ 8000630:	e768      	b.n	8000504 <main+0x30>
  8000632:	bf00      	nop
  8000634:	200002d0 	.word	0x200002d0
  8000638:	20000138 	.word	0x20000138
- 800063c:	08008f38 	.word	0x08008f38
- 8000640:	200001e0 	.word	0x200001e0
- 8000644:	40020800 	.word	0x40020800
- 8000648:	20000354 	.word	0x20000354
+ 800063c:	40020800 	.word	0x40020800
+ 8000640:	20000354 	.word	0x20000354
+ 8000644:	08008f38 	.word	0x08008f38
+ 8000648:	200001e0 	.word	0x200001e0
  800064c:	20000350 	.word	0x20000350
  8000650:	20000360 	.word	0x20000360
 

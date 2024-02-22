@@ -114,7 +114,7 @@ int main(void)
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&adc_out, 64);
 
   //HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass + 44), 3297);
-  HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2 + 44), 16384);
+
 
 
   /* USER CODE END 2 */
@@ -146,6 +146,8 @@ int main(void)
 		HAL_GPIO_WritePin(GPIOC, Red_Led_Pin, GPIO_PIN_SET);
 
 		input_buff[0] |= 0x2;
+
+
 	} else {
 		HAL_GPIO_WritePin(GPIOC, Red_Led_Pin, GPIO_PIN_RESET);
 
@@ -157,6 +159,9 @@ int main(void)
 		HAL_GPIO_WritePin(GPIOC, Green_Led_Pin, GPIO_PIN_SET);
 
 		input_buff[0] |= 0x4;
+
+		//Also play the trumpet sound
+		HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2 + 44), 16384);
 	} else {
 		HAL_GPIO_WritePin(GPIOC, Green_Led_Pin, GPIO_PIN_RESET);
 
