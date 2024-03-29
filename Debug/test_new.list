@@ -41,11 +41,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  18 .debug_line   0001745c  00000000  00000000  00064381  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000974f6  00000000  00000000  0007b7dd  2**0
+ 19 .debug_str    000974de  00000000  00000000  0007b7dd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  000043cc  00000000  00000000  00112cd4  2**2
+ 20 .debug_frame  000043cc  00000000  00000000  00112cbc  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000005c  00000000  00000000  001170a0  2**0
+ 21 .debug_line_str 0000005c  00000000  00000000  00117088  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -404,16 +404,16 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 	//Configure PC10 to light up the yellow LED (0 means the button is pressed)
-	if(HAL_GPIO_ReadPin(GPIOC, Grey_Button_Pin) == GPIO_PIN_RESET) {
+	if(HAL_GPIO_ReadPin(GPIOC, Green_Button_Pin) == GPIO_PIN_SET) {
  8000504:	f44f 6180 	mov.w	r1, #1024	; 0x400
  8000508:	484c      	ldr	r0, [pc, #304]	; (800063c <main+0x168>)
  800050a:	f001 ff45 	bl	8002398 <HAL_GPIO_ReadPin>
  800050e:	4603      	mov	r3, r0
- 8000510:	2b00      	cmp	r3, #0
+ 8000510:	2b01      	cmp	r3, #1
  8000512:	d10c      	bne.n	800052e <main+0x5a>
-		HAL_GPIO_WritePin(GPIOC, Yellow_Led_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOC, LED0_Pin, GPIO_PIN_SET);
  8000514:	2201      	movs	r2, #1
- 8000516:	2104      	movs	r1, #4
+ 8000516:	2101      	movs	r1, #1
  8000518:	4848      	ldr	r0, [pc, #288]	; (800063c <main+0x168>)
  800051a:	f001 ff55 	bl	80023c8 <HAL_GPIO_WritePin>
 
@@ -428,9 +428,9 @@ int main(void)
  800052a:	701a      	strb	r2, [r3, #0]
  800052c:	e00b      	b.n	8000546 <main+0x72>
 	} else {
-		HAL_GPIO_WritePin(GPIOC, Yellow_Led_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOC, LED0_Pin, GPIO_PIN_RESET);
  800052e:	2200      	movs	r2, #0
- 8000530:	2104      	movs	r1, #4
+ 8000530:	2101      	movs	r1, #1
  8000532:	4842      	ldr	r0, [pc, #264]	; (800063c <main+0x168>)
  8000534:	f001 ff48 	bl	80023c8 <HAL_GPIO_WritePin>
 
@@ -445,14 +445,14 @@ int main(void)
 	}
 
 	//Configure PC10 to light up the yellow LED (0 means the button is pressed)
-	if(HAL_GPIO_ReadPin(GPIOC, Red_Button_Pin) == GPIO_PIN_RESET) {
+	if(HAL_GPIO_ReadPin(GPIOC, Red_Button_Pin) == GPIO_PIN_SET) {
  8000546:	f44f 6100 	mov.w	r1, #2048	; 0x800
  800054a:	483c      	ldr	r0, [pc, #240]	; (800063c <main+0x168>)
  800054c:	f001 ff24 	bl	8002398 <HAL_GPIO_ReadPin>
  8000550:	4603      	mov	r3, r0
- 8000552:	2b00      	cmp	r3, #0
+ 8000552:	2b01      	cmp	r3, #1
  8000554:	d10c      	bne.n	8000570 <main+0x9c>
-		HAL_GPIO_WritePin(GPIOC, Red_Led_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOC, LED1_Pin, GPIO_PIN_SET);
  8000556:	2201      	movs	r2, #1
  8000558:	2102      	movs	r1, #2
  800055a:	4838      	ldr	r0, [pc, #224]	; (800063c <main+0x168>)
@@ -469,7 +469,7 @@ int main(void)
 
 
 	} else {
-		HAL_GPIO_WritePin(GPIOC, Red_Led_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOC, LED1_Pin, GPIO_PIN_RESET);
  8000570:	2200      	movs	r2, #0
  8000572:	2102      	movs	r1, #2
  8000574:	4831      	ldr	r0, [pc, #196]	; (800063c <main+0x168>)
@@ -485,16 +485,16 @@ int main(void)
 	}
 
 	//Configure PC10 to light up the yellow LED (0 means the button is pressed)
-	if(HAL_GPIO_ReadPin(GPIOC, Green_Button_Pin) == GPIO_PIN_RESET) {
+	if(HAL_GPIO_ReadPin(GPIOC, Yellow_Button_Pin) == GPIO_PIN_SET) {
  8000588:	f44f 5180 	mov.w	r1, #4096	; 0x1000
  800058c:	482b      	ldr	r0, [pc, #172]	; (800063c <main+0x168>)
  800058e:	f001 ff03 	bl	8002398 <HAL_GPIO_ReadPin>
  8000592:	4603      	mov	r3, r0
- 8000594:	2b00      	cmp	r3, #0
+ 8000594:	2b01      	cmp	r3, #1
  8000596:	d113      	bne.n	80005c0 <main+0xec>
-		HAL_GPIO_WritePin(GPIOC, Green_Led_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOC, LED2_Pin, GPIO_PIN_SET);
  8000598:	2201      	movs	r2, #1
- 800059a:	2101      	movs	r1, #1
+ 800059a:	2104      	movs	r1, #4
  800059c:	4827      	ldr	r0, [pc, #156]	; (800063c <main+0x168>)
  800059e:	f001 ff13 	bl	80023c8 <HAL_GPIO_WritePin>
 
@@ -515,9 +515,9 @@ int main(void)
  80005ba:	f002 f85f 	bl	800267c <HAL_I2S_Transmit_DMA>
  80005be:	e00b      	b.n	80005d8 <main+0x104>
 	} else {
-		HAL_GPIO_WritePin(GPIOC, Green_Led_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOC, LED2_Pin, GPIO_PIN_RESET);
  80005c0:	2200      	movs	r2, #0
- 80005c2:	2101      	movs	r1, #1
+ 80005c2:	2104      	movs	r1, #4
  80005c4:	481d      	ldr	r0, [pc, #116]	; (800063c <main+0x168>)
  80005c6:	f001 feff 	bl	80023c8 <HAL_GPIO_WritePin>
 
@@ -1143,7 +1143,7 @@ static void MX_GPIO_Init(void)
  8000970:	687b      	ldr	r3, [r7, #4]
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, Green_Led_Pin|Red_Led_Pin|Yellow_Led_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, LED0_Pin|LED1_Pin|LED2_Pin, GPIO_PIN_RESET);
  8000972:	2200      	movs	r2, #0
  8000974:	2107      	movs	r1, #7
  8000976:	4822      	ldr	r0, [pc, #136]	; (8000a00 <MX_GPIO_Init+0x114>)
@@ -1172,8 +1172,8 @@ static void MX_GPIO_Init(void)
  800099c:	4818      	ldr	r0, [pc, #96]	; (8000a00 <MX_GPIO_Init+0x114>)
  800099e:	f001 fb77 	bl	8002090 <HAL_GPIO_Init>
 
-  /*Configure GPIO pins : Green_Led_Pin Red_Led_Pin Yellow_Led_Pin */
-  GPIO_InitStruct.Pin = Green_Led_Pin|Red_Led_Pin|Yellow_Led_Pin;
+  /*Configure GPIO pins : LED0_Pin LED1_Pin LED2_Pin */
+  GPIO_InitStruct.Pin = LED0_Pin|LED1_Pin|LED2_Pin;
  80009a2:	2307      	movs	r3, #7
  80009a4:	617b      	str	r3, [r7, #20]
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -1210,15 +1210,15 @@ static void MX_GPIO_Init(void)
  80009d4:	480b      	ldr	r0, [pc, #44]	; (8000a04 <MX_GPIO_Init+0x118>)
  80009d6:	f001 fb5b 	bl	8002090 <HAL_GPIO_Init>
 
-  /*Configure GPIO pins : Grey_Button_Pin Red_Button_Pin Green_Button_Pin */
-  GPIO_InitStruct.Pin = Grey_Button_Pin|Red_Button_Pin|Green_Button_Pin;
+  /*Configure GPIO pins : Green_Button_Pin Red_Button_Pin Yellow_Button_Pin */
+  GPIO_InitStruct.Pin = Green_Button_Pin|Red_Button_Pin|Yellow_Button_Pin;
  80009da:	f44f 53e0 	mov.w	r3, #7168	; 0x1c00
  80009de:	617b      	str	r3, [r7, #20]
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
  80009e0:	2300      	movs	r3, #0
  80009e2:	61bb      	str	r3, [r7, #24]
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
- 80009e4:	2301      	movs	r3, #1
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 80009e4:	2300      	movs	r3, #0
  80009e6:	61fb      	str	r3, [r7, #28]
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
  80009e8:	f107 0314 	add.w	r3, r7, #20

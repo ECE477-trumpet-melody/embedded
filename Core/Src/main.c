@@ -127,43 +127,41 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	//Configure PC10 to light up the yellow LED (0 means the button is pressed)
-	if(HAL_GPIO_ReadPin(GPIOC, Grey_Button_Pin) == GPIO_PIN_RESET) {
-		HAL_GPIO_WritePin(GPIOC, Yellow_Led_Pin, GPIO_PIN_SET);
+	//Configure PC10 to light up the LED0 and act as MB1
+	if(HAL_GPIO_ReadPin(GPIOC, Green_Button_Pin) == GPIO_PIN_SET) {
+		HAL_GPIO_WritePin(GPIOC, LED0_Pin, GPIO_PIN_SET);
 
 		//This button is going to be MB1, so it goes in the 0th location in the first byte of the
 		//buffer
 		input_buff[0] |= 0x1;
 	} else {
-		HAL_GPIO_WritePin(GPIOC, Yellow_Led_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOC, LED0_Pin, GPIO_PIN_RESET);
 
 		//Clear the value in the first position
 		input_buff[0] &= ~(0x1);
 	}
 
-	//Configure PC10 to light up the yellow LED (0 means the button is pressed)
-	if(HAL_GPIO_ReadPin(GPIOC, Red_Button_Pin) == GPIO_PIN_RESET) {
-		HAL_GPIO_WritePin(GPIOC, Red_Led_Pin, GPIO_PIN_SET);
+	//Configure PC11 to light up the LED1 and act as MB2
+	if(HAL_GPIO_ReadPin(GPIOC, Red_Button_Pin) == GPIO_PIN_SET) {
+		HAL_GPIO_WritePin(GPIOC, LED1_Pin, GPIO_PIN_SET);
 
 		input_buff[0] |= 0x2;
-
-
 	} else {
-		HAL_GPIO_WritePin(GPIOC, Red_Led_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOC, LED1_Pin, GPIO_PIN_RESET);
 
 		input_buff[0] &= ~(0x2);
 	}
 
-	//Configure PC10 to light up the yellow LED (0 means the button is pressed)
-	if(HAL_GPIO_ReadPin(GPIOC, Green_Button_Pin) == GPIO_PIN_RESET) {
-		HAL_GPIO_WritePin(GPIOC, Green_Led_Pin, GPIO_PIN_SET);
+	//Configure PC12 to light up the LED2, act as MB3, and play a sound
+	if(HAL_GPIO_ReadPin(GPIOC, Yellow_Button_Pin) == GPIO_PIN_SET) {
+		HAL_GPIO_WritePin(GPIOC, LED2_Pin, GPIO_PIN_SET);
 
 		input_buff[0] |= 0x4;
 
 		//Also play the trumpet sound
 		HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2 + 44), 16384);
 	} else {
-		HAL_GPIO_WritePin(GPIOC, Green_Led_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOC, LED2_Pin, GPIO_PIN_RESET);
 
 		input_buff[0] &= ~(0x4);
 	}
@@ -393,7 +391,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, Green_Led_Pin|Red_Led_Pin|Yellow_Led_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, LED0_Pin|LED1_Pin|LED2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
@@ -404,8 +402,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : Green_Led_Pin Red_Led_Pin Yellow_Led_Pin */
-  GPIO_InitStruct.Pin = Green_Led_Pin|Red_Led_Pin|Yellow_Led_Pin;
+  /*Configure GPIO pins : LED0_Pin LED1_Pin LED2_Pin */
+  GPIO_InitStruct.Pin = LED0_Pin|LED1_Pin|LED2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -418,10 +416,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : Grey_Button_Pin Red_Button_Pin Green_Button_Pin */
-  GPIO_InitStruct.Pin = Grey_Button_Pin|Red_Button_Pin|Green_Button_Pin;
+  /*Configure GPIO pins : Green_Button_Pin Red_Button_Pin Yellow_Button_Pin */
+  GPIO_InitStruct.Pin = Green_Button_Pin|Red_Button_Pin|Yellow_Button_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */

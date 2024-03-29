@@ -61,12 +61,12 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
-#define Green_Led_Pin GPIO_PIN_0
-#define Green_Led_GPIO_Port GPIOC
-#define Red_Led_Pin GPIO_PIN_1
-#define Red_Led_GPIO_Port GPIOC
-#define Yellow_Led_Pin GPIO_PIN_2
-#define Yellow_Led_GPIO_Port GPIOC
+#define LED0_Pin GPIO_PIN_0
+#define LED0_GPIO_Port GPIOC
+#define LED1_Pin GPIO_PIN_1
+#define LED1_GPIO_Port GPIOC
+#define LED2_Pin GPIO_PIN_2
+#define LED2_GPIO_Port GPIOC
 #define USART_TX_Pin GPIO_PIN_2
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3
@@ -77,12 +77,12 @@ void Error_Handler(void);
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
-#define Grey_Button_Pin GPIO_PIN_10
-#define Grey_Button_GPIO_Port GPIOC
+#define Green_Button_Pin GPIO_PIN_10
+#define Green_Button_GPIO_Port GPIOC
 #define Red_Button_Pin GPIO_PIN_11
 #define Red_Button_GPIO_Port GPIOC
-#define Green_Button_Pin GPIO_PIN_12
-#define Green_Button_GPIO_Port GPIOC
+#define Yellow_Button_Pin GPIO_PIN_12
+#define Yellow_Button_GPIO_Port GPIOC
 #define SWO_Pin GPIO_PIN_3
 #define SWO_GPIO_Port GPIOB
 
