@@ -19,10 +19,11 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_device.h"
+#include "usbd_customhid.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "usbd_hid.h"
+//#include "usbd_hid.h"
 
 /* USER CODE END Includes */
 
@@ -179,7 +180,8 @@ int main(void)
 	input_buff[1] = xaxis_signed;
 
 	//Send the current buffer to the computer
-	USBD_HID_SendReport(&hUsbDeviceFS, input_buff, 4);
+	USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, input_buff, 4);
+	//USBD_CUSTOM_HID_RecievePacket();
 
 	//Add a short delay
 	HAL_Delay (10);
