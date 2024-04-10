@@ -275,7 +275,7 @@ uint8_t  USBD_CUSTOM_HID_RegisterInterface  (USBD_HandleTypeDef   *pdev,
 //uint8_t USBD_CUSTOM_HID_SendReport(USBD_HandleTypeDef *pdev,
 //                                   uint8_t *report, uint16_t len);
 //#endif /* USE_USBD_COMPOSITE */
-//uint8_t USBD_CUSTOM_HID_ReceivePacket(USBD_HandleTypeDef *pdev);
+uint8_t USBD_CUSTOM_HID_ReceivePacket(USBD_HandleTypeDef *pdev);
 //
 //uint8_t USBD_CUSTOM_HID_RegisterInterface(USBD_HandleTypeDef *pdev,
 //                                          USBD_CUSTOM_HID_ItfTypeDef *fops);
