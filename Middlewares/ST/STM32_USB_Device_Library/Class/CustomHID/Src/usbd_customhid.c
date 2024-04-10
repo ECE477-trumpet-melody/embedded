@@ -137,9 +137,9 @@ __ALIGN_BEGIN static uint8_t USBD_CUSTOM_HID_CfgDesc[USB_CUSTOM_HID_CONFIG_DESC_
 {
 		9,                          // bLength;
     2,                          // bDescriptorType;
-    LOBYTE(USB_CUSTOM_HID_CONFIG_DESC_SIZ),      // wTotalLength
-    HIBYTE(USB_CUSTOM_HID_CONFIG_DESC_SIZ),
-    0x04,              // bNumInterfaces
+    LOBYTE(CONFIG_DESC_SIZE),      // wTotalLength
+    HIBYTE(CONFIG_DESC_SIZE),
+    NUM_INTERFACE,              // bNumInterfaces
     1,                          // bConfigurationValue
 		0,                          // iConfiguration
 		DEVICE_ATTRIBUTES,					// bmAttributes
@@ -749,6 +749,8 @@ static uint8_t USBD_CUSTOM_HID_DataOut(USBD_HandleTypeDef *pdev, uint8_t epnum)
   NAKed till the end of the application processing */
   ((USBD_CUSTOM_HID_ItfTypeDef *)pdev->pUserData[pdev->classId])->OutEvent(hhid->Report_buf[0],
                                                                            hhid->Report_buf[1]);
+
+
 
   return (uint8_t)USBD_OK;
 }

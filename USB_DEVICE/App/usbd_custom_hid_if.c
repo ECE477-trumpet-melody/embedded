@@ -91,7 +91,65 @@
 __ALIGN_BEGIN static uint8_t CUSTOM_HID_ReportDesc_FS[USBD_CUSTOM_HID_REPORT_DESC_SIZE] __ALIGN_END =
 {
   /* USER CODE BEGIN 0 */
-  0x00,
+//		0x05, 0x01,        //(GLOBAL) USAGE_PAGE         0x0001 Generic Desktop Page
+//		0x09, 0x05,        //(LOCAL)  USAGE              0x00010005 Game Pad (Application Collection)
+//		0xA1, 0x01,        //(MAIN)   COLLECTION         0x01 Application (Usage=0x00010005: Page=Generic Desktop Page, Usage=Game Pad, Type=Application Collection)
+//		0xA1, 0x00,          //(MAIN)   COLLECTION         0x00 Physical (Usage=0x0: Page=, Usage=, Type=) <-- Error: COLLECTION must be preceded by a known USAGE <-- Warning: USAGE type should be CP (Physical Collection)
+//		0x09, 0x30,            //(LOCAL)  USAGE              0x00010030 X (Dynamic Value)
+//		0x09, 0x31,            //(LOCAL)  USAGE              0x00010031 Y (Dynamic Value)
+//		0x15, 0x00,            //(GLOBAL) LOGICAL_MINIMUM    0x00 (0)  <-- Info: Consider replacing 15 00 with 14
+//		0x26, 0xFFFF,          //(GLOBAL) LOGICAL_MAXIMUM    0xFFFF (-1)  <-- Info: Consider replacing 26 FFFF with 25 FF
+//		0x35, 0x00,            //(GLOBAL) PHYSICAL_MINIMUM   0x00 (0)  <-- Info: Consider replacing 35 00 with 34
+//		0x46, 0xFFFF,          //(GLOBAL) PHYSICAL_MAXIMUM   0xFFFF (-1)  <-- Info: Consider replacing 46 FFFF with 45 FF
+//		0x95, 0x02,            //(GLOBAL) REPORT_COUNT       0x02 (2) Number of fields
+//		0x75, 0x10,            //(GLOBAL) REPORT_SIZE        0x10 (16) Number of bits per field
+//		0x81, 0x02,            //(MAIN)   INPUT              0x00000002 (2 fields x 16 bits) 0=Data 1=Variable 0=Absolute 0=NoWrap 0=Linear 0=PrefState 0=NoNull 0=NonVolatile 0=Bitmap  <-- Error: LOGICAL_MAXIMUM (-1) is less than LOGICAL_MINIMUM (0) <-- Error: PHYSICAL_MAXIMUM (-1) is less than PHYSICAL_MINIMUM (0)
+//		0xC0,             //(MAIN)   END_COLLECTION     Physical  <-- Warning: Physical units are still in effect PHYSICAL(MIN=0,MAX=-1) UNIT(0x,EXP=0)
+//		0xA1, 0x00,          //(MAIN)   COLLECTION         0x00 Physical (Usage=0x0: Page=, Usage=, Type=) <-- Error: COLLECTION must be preceded by a known USAGE <-- Warning: USAGE type should be CP (Physical Collection)
+//		0x09, 0x33,            //(LOCAL)  USAGE              0x00010033 Rx (Dynamic Value)
+//		0x09, 0x34,            //(LOCAL)  USAGE              0x00010034 Ry (Dynamic Value)
+//		0x15, 0x00,            //(GLOBAL) LOGICAL_MINIMUM    0x00 (0) <-- Redundant: LOGICAL_MINIMUM is already 0 <-- Info: Consider replacing 15 00 with 14
+//		0x26, 0xFFFF,          //(GLOBAL) LOGICAL_MAXIMUM    0xFFFF (-1) <-- Redundant: LOGICAL_MAXIMUM is already -1 <-- Info: Consider replacing 26 FFFF with 25 FF
+//		0x35, 0x00,            //(GLOBAL) PHYSICAL_MINIMUM   0x00 (0) <-- Redundant: PHYSICAL_MINIMUM is already 0 <-- Info: Consider replacing 35 00 with 34
+//		0x46, 0xFFFF,          //(GLOBAL) PHYSICAL_MAXIMUM   0xFFFF (-1) <-- Redundant: PHYSICAL_MAXIMUM is already -1 <-- Info: Consider replacing 46 FFFF with 45 FF
+//		0x95, 0x02,            //(GLOBAL) REPORT_COUNT       0x02 (2) Number of fields <-- Redundant: REPORT_COUNT is already 2
+//		0x75, 0x10,            //(GLOBAL) REPORT_SIZE        0x10 (16) Number of bits per field <-- Redundant: REPORT_SIZE is already 16
+//		0x81, 0x02,            //(MAIN)   INPUT              0x00000002 (2 fields x 16 bits) 0=Data 1=Variable 0=Absolute 0=NoWrap 0=Linear 0=PrefState 0=NoNull 0=NonVolatile 0=Bitmap  <-- Error: LOGICAL_MAXIMUM (-1) is less than LOGICAL_MINIMUM (0) <-- Error: PHYSICAL_MAXIMUM (-1) is less than PHYSICAL_MINIMUM (0)
+//		0xC0,             //(MAIN)   END_COLLECTION     Physical  <-- Warning: Physical units are still in effect PHYSICAL(MIN=0,MAX=-1) UNIT(0x,EXP=0)
+//		0xA1, 0x00,          //(MAIN)   COLLECTION         0x00 Physical (Usage=0x0: Page=, Usage=, Type=) <-- Error: COLLECTION must be preceded by a known USAGE <-- Warning: USAGE type should be CP (Physical Collection)
+//		0x09, 0x32,            //(LOCAL)  USAGE              0x00010032 Z (Dynamic Value)
+//		0x15, 0x00,            //(GLOBAL) LOGICAL_MINIMUM    0x00 (0) <-- Redundant: LOGICAL_MINIMUM is already 0 <-- Info: Consider replacing 15 00 with 14
+//		0x26, 0xFFFF,          //(GLOBAL) LOGICAL_MAXIMUM    0xFFFF (-1) <-- Redundant: LOGICAL_MAXIMUM is already -1 <-- Info: Consider replacing 26 FFFF with 25 FF
+//		0x35, 0x00,            //(GLOBAL) PHYSICAL_MINIMUM   0x00 (0) <-- Redundant: PHYSICAL_MINIMUM is already 0 <-- Info: Consider replacing 35 00 with 34
+//		0x46, 0xFFFF,          //(GLOBAL) PHYSICAL_MAXIMUM   0xFFFF (-1) <-- Redundant: PHYSICAL_MAXIMUM is already -1 <-- Info: Consider replacing 46 FFFF with 45 FF
+//		0x95, 0x01,            //(GLOBAL) REPORT_COUNT       0x01 (1) Number of fields
+//		0x75, 0x10,            //(GLOBAL) REPORT_SIZE        0x10 (16) Number of bits per field <-- Redundant: REPORT_SIZE is already 16
+//		0x81, 0x02,            //(MAIN)   INPUT              0x00000002 (1 field x 16 bits) 0=Data 1=Variable 0=Absolute 0=NoWrap 0=Linear 0=PrefState 0=NoNull 0=NonVolatile 0=Bitmap  <-- Error: LOGICAL_MAXIMUM (-1) is less than LOGICAL_MINIMUM (0) <-- Error: PHYSICAL_MAXIMUM (-1) is less than PHYSICAL_MINIMUM (0)
+//		0xC0,             //(MAIN)   END_COLLECTION     Physical  <-- Warning: Physical units are still in effect PHYSICAL(MIN=0,MAX=-1) UNIT(0x,EXP=0)
+//		0x05, 0x09,          //(GLOBAL) USAGE_PAGE         0x0009 Button Page
+//		0x19, 0x01,          //(LOCAL)  USAGE_MINIMUM      0x00090001 Button 1 Primary/trigger (Selector, On/Off Control, Momentary Control, or One Shot Control)
+//		0x29, 0x0A,          //(LOCAL)  USAGE_MAXIMUM      0x0009000A Button 10 (Selector, On/Off Control, Momentary Control, or One Shot Control)
+//		0x95, 0x0A,          //(GLOBAL) REPORT_COUNT       0x0A (10) Number of fields
+//		0x75, 0x01,          //(GLOBAL) REPORT_SIZE        0x01 (1) Number of bits per field
+//		0x81, 0x02,          //(MAIN)   INPUT              0x00000002 (10 fields x 1 bit) 0=Data 1=Variable 0=Absolute 0=NoWrap 0=Linear 0=PrefState 0=NoNull 0=NonVolatile 0=Bitmap  <-- Error: LOGICAL_MAXIMUM (-1) is less than LOGICAL_MINIMUM (0) <-- Error: PHYSICAL_MAXIMUM (-1) is less than PHYSICAL_MINIMUM (0)
+//		0x05, 0x01,          //(GLOBAL) USAGE_PAGE         0x0001 Generic Desktop Page
+//		0x09, 0x39,          //(LOCAL)  USAGE              0x00010039 Hat switch (Dynamic Value)
+//		0x15, 0x01,          //(GLOBAL) LOGICAL_MINIMUM    0x01 (1)
+//		0x25, 0x08,          //(GLOBAL) LOGICAL_MAXIMUM    0x08 (8)
+//		0x35, 0x00,          //(GLOBAL) PHYSICAL_MINIMUM   0x00 (0) <-- Redundant: PHYSICAL_MINIMUM is already 0 <-- Info: Consider replacing 35 00 with 34
+//		0x46, 0x3B10,        //(GLOBAL) PHYSICAL_MAXIMUM   0x103B (4155)
+//		0x66, 0x0E00,        //(GLOBAL) UNIT               0x000E  (E=Reserved <-- Error: Measurement system type (E) is reserved)  <-- Info: Consider replacing 66 0E00 with 65 0E
+//		0x75, 0x04,          //(GLOBAL) REPORT_SIZE        0x04 (4) Number of bits per field
+//		0x95, 0x01,          //(GLOBAL) REPORT_COUNT       0x01 (1) Number of fields
+//		0x81, 0x42,          //(MAIN)   INPUT              0x00000042 (1 field x 4 bits) 0=Data 1=Variable 0=Absolute 0=NoWrap 0=Linear 0=PrefState 1=Null 0=NonVolatile 0=Bitmap
+//		0x75, 0x02,          //(GLOBAL) REPORT_SIZE        0x02 (2) Number of bits per field
+//		0x95, 0x01,          //(GLOBAL) REPORT_COUNT       0x01 (1) Number of fields <-- Redundant: REPORT_COUNT is already 1
+//		0x81, 0x03,          //(MAIN)   INPUT              0x00000003 (1 field x 2 bits) 1=Constant 1=Variable 0=Absolute 0=NoWrap 0=Linear 0=PrefState 0=NoNull 0=NonVolatile 0=Bitmap
+//		0x75, 0x08,          //(GLOBAL) REPORT_SIZE        0x08 (8) Number of bits per field
+//		0x95, 0x02,          //(GLOBAL) REPORT_COUNT       0x02 (2) Number of fields
+//		0x81, 0x03,         //(MAIN)   INPUT              0x00000003 (2 fields x 8 bits) 1=Constant 1=Variable 0=Absolute 0=NoWrap 0=Linear 0=PrefState 0=NoNull 0=NonVolatile 0=Bitmap
+   //(MAIN)   END_COLLECTION     Application  <-- Warning: Physical units are still in effect PHYSICAL(MIN=0,MAX=4155) UNIT(0x0000000E,EXP=0)
+	0x00,
   /* USER CODE END 0 */
   0xC0    /*     END_COLLECTION	             */
 };

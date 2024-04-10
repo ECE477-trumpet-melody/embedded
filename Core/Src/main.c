@@ -57,7 +57,7 @@ extern USBD_HandleTypeDef hUsbDeviceFS;
 
 uint16_t adc_out[64];
 uint16_t adc_avg;
-uint8_t input_buff[4] = {0};	//Buffer for holding inputs to send to the computer
+uint8_t input_buff[20] = {0};	//Buffer for holding inputs to send to the computer
 
 /* USER CODE END PV */
 
@@ -134,37 +134,37 @@ int main(void)
 
 		//This button is going to be MB1, so it goes in the 0th location in the first byte of the
 		//buffer
-		input_buff[0] |= 0x1;
+		input_buff[3] |= 0x10;
 	} else {
 		HAL_GPIO_WritePin(GPIOC, LED0_Pin, GPIO_PIN_RESET);
 
 		//Clear the value in the first position
-		input_buff[0] &= ~(0x1);
+		input_buff[3] &= ~(0x10);
 	}
 
 	//Configure PC11 to light up the LED1 and act as MB2
 	if(HAL_GPIO_ReadPin(GPIOC, Red_Button_Pin) == GPIO_PIN_SET) {
 		HAL_GPIO_WritePin(GPIOC, LED1_Pin, GPIO_PIN_SET);
 
-		input_buff[0] |= 0x2;
+		input_buff[3] |= 0x20;
 	} else {
 		HAL_GPIO_WritePin(GPIOC, LED1_Pin, GPIO_PIN_RESET);
 
-		input_buff[0] &= ~(0x2);
+		input_buff[3] &= ~(0x20);
 	}
 
 	//Configure PC12 to light up the LED2, act as MB3, and play a sound
 	if(HAL_GPIO_ReadPin(GPIOC, Yellow_Button_Pin) == GPIO_PIN_SET) {
 		HAL_GPIO_WritePin(GPIOC, LED2_Pin, GPIO_PIN_SET);
 
-		input_buff[0] |= 0x4;
+		input_buff[3] |= 0x40;
 
 		//Also play the trumpet sound
 		HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2 + 44), 16384);
 	} else {
 		HAL_GPIO_WritePin(GPIOC, LED2_Pin, GPIO_PIN_RESET);
 
-		input_buff[0] &= ~(0x4);
+		input_buff[3] &= ~(0x40);
 	}
 
 	// Average the array of adc_out values
@@ -177,10 +177,10 @@ int main(void)
 	// Normalize the value from the adc so it is a signed value between -128 and 127
 	uint16_t xaxis_unsigned = adc_avg >> 4; //This divides by 16
 	int8_t xaxis_signed = xaxis_unsigned - 128;
-	input_buff[1] = xaxis_signed;
+	input_buff[5] = xaxis_signed;
 
 	//Send the current buffer to the computer
-	USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, input_buff, 4);
+	USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, input_buff, 20);
 	//USBD_CUSTOM_HID_RecievePacket();
 
 	//Add a short delay

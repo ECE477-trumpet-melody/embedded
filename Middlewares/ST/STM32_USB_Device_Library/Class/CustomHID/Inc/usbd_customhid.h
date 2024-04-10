@@ -41,8 +41,8 @@ extern "C" {
   * @{
   */
 
-#define CUSTOM_HID_EPIN_ADDR                 0x01		//0x81
-#define CUSTOM_HID_EPIN_SIZE                 0x20		//0x02
+#define CUSTOM_HID_EPIN_ADDR                 0x81		//0x81
+#define CUSTOM_HID_EPIN_SIZE                 20U		//0x02
 
 #define CUSTOM_HID_EPOUT_ADDR                0x02
 #define CUSTOM_HID_EPOUT_SIZE                0x08
