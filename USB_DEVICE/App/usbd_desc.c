@@ -154,24 +154,30 @@ USBD_DescriptorsTypeDef FS_Desc =
 /** USB standard device descriptor. */
 __ALIGN_BEGIN uint8_t USBD_FS_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END =
 {
-		 18,                       /*bLength */
-		    1,       									/*bDescriptorType*/
-		    0x00,                     /* bcdUSB */
-		    0x02,
-		    DEVICE_CLASS,             /*bDeviceClass*/
-		    DEVICE_SUBCLASS,          /*bDeviceSubClass*/
-		    DEVICE_PROTOCOL,          /*bDeviceProtocol*/
-		    USB_MAX_EP0_SIZE,         /*bMaxPacketSize*/			// --> EP0_SIZE dando problema
-		    LOBYTE(VENDOR_ID),        /*idVendor*/
-		    HIBYTE(VENDOR_ID),        /*idVendor*/
-		    LOBYTE(PRODUCT_ID),       /*idVendor*/
-		    HIBYTE(PRODUCT_ID),       /*idVendor*/
-		    LOBYTE(DEVICE_VERSION),   /*bcdDevice rel. 2.00*/
-		    HIBYTE(DEVICE_VERSION),
-		    1,           							/*Index of manufacturer  string*/
-		    2,								       	/*Index of product string*/
-		    3,        								/*Index of serial number string*/
-		    1  												/*bNumConfigurations*/
+  0x12,                       /*bLength */
+  USB_DESC_TYPE_DEVICE,       /*bDescriptorType*/
+#if (USBD_LPM_ENABLED == 1)
+  0x01,                       /*bcdUSB */ /* changed to USB version 2.01
+                                             in order to support LPM L1 suspend
+                                             resume test of USBCV3.0*/
+#else
+  0x00,                       /*bcdUSB */
+#endif /* (USBD_LPM_ENABLED == 1) */
+  0x02,
+  0x00,                       /*bDeviceClass*/
+  0x00,                       /*bDeviceSubClass*/
+  0x00,                       /*bDeviceProtocol*/
+  USB_MAX_EP0_SIZE,           /*bMaxPacketSize*/
+  LOBYTE(USBD_VID),           /*idVendor*/
+  HIBYTE(USBD_VID),           /*idVendor*/
+  LOBYTE(USBD_PID_FS),        /*idProduct*/
+  HIBYTE(USBD_PID_FS),        /*idProduct*/
+  0x00,                       /*bcdDevice rel. 2.00*/
+  0x02,
+  USBD_IDX_MFC_STR,           /*Index of manufacturer  string*/
+  USBD_IDX_PRODUCT_STR,       /*Index of product string*/
+  USBD_IDX_SERIAL_STR,        /*Index of serial number string*/
+  USBD_MAX_NUM_CONFIGURATION  /*bNumConfigurations*/
 };
 
 /* USB_DeviceDescriptor */

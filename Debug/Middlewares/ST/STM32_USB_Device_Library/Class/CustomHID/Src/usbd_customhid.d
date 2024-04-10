@@ -42,9 +42,7 @@ Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Src/usbd_customhid.o: \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h \
- ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h \
- ../USB_DEVICE/App/usbd_desc.h \
- ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
 C:/Users/clwal/OneDrive\ -\ purdue.edu/Year\ 4/Semester\ 2/ECE\ 47700/test_new/Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Inc/usbd_customhid.h:
 ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
 ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
@@ -89,5 +87,3 @@ C:/Users/clwal/OneDrive\ -\ purdue.edu/Year\ 4/Semester\ 2/ECE\ 47700/test_new/M
 ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
 ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:
 ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:
-../USB_DEVICE/App/usbd_desc.h:
-../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:

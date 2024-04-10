@@ -19,11 +19,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_device.h"
-#include "usbd_customhid.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-//#include "usbd_hid.h"
+#include "usbd_customhid.h"
 
 /* USER CODE END Includes */
 
@@ -57,7 +56,7 @@ extern USBD_HandleTypeDef hUsbDeviceFS;
 
 uint16_t adc_out[64];
 uint16_t adc_avg;
-uint8_t input_buff[20] = {0};	//Buffer for holding inputs to send to the computer
+uint8_t input_buff[2] = {0};	//Buffer for holding inputs to send to the computer
 
 /* USER CODE END PV */
 
@@ -175,12 +174,16 @@ int main(void)
 	adc_avg = adc_sum >> 6;  //This divides by 64
 
 	// Normalize the value from the adc so it is a signed value between -128 and 127
-	uint16_t xaxis_unsigned = adc_avg >> 4; //This divides by 16
-	int8_t xaxis_signed = xaxis_unsigned - 128;
-	input_buff[5] = xaxis_signed;
+//	uint16_t xaxis_unsigned = adc_avg >> 4; //This divides by 16
+//	int8_t xaxis_signed = xaxis_unsigned - 128;
+//	input_buff[5] = xaxis_signed;
+
+	//Fit the 16-bit adc avg into two 8-bit values in little endian
+	input_buff[0] = (uint8_t) adc_avg;
+	input_buff[1] = (uint8_t) (adc_avg >> 8);
 
 	//Send the current buffer to the computer
-	USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, input_buff, 20);
+	USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, input_buff, 2);
 	//USBD_CUSTOM_HID_RecievePacket();
 
 	//Add a short delay
