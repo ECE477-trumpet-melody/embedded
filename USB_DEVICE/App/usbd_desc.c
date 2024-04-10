@@ -62,10 +62,10 @@
   * @{
   */
 
-#define USBD_VID     1118
+#define USBD_VID     0x54c
 #define USBD_LANGID_STRING     1033
-#define USBD_MANUFACTURER_STRING     "@Microsoft"
-#define USBD_PID_FS     0x028E
+#define USBD_MANUFACTURER_STRING     ""
+#define USBD_PID_FS     0x0ce7
 #define USBD_PRODUCT_STRING_FS     "STM32 Custom Human interface"
 #define USBD_CONFIGURATION_STRING_FS     "Custom HID Config"
 #define USBD_INTERFACE_STRING_FS     "Custom HID Interface"

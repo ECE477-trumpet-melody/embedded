@@ -7,45 +7,45 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         000090ac  08000198  08000198  00010198  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       0000810c  08009244  08009244  00019244  2**2
+  2 .rodata       00008104  08009244  08009244  00019244  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  08011350  08011350  00030108  2**0
+  3 .ARM.extab    00000000  08011348  08011348  00030120  2**0
                   CONTENTS
-  4 .ARM          00000008  08011350  08011350  00021350  2**2
+  4 .ARM          00000008  08011348  08011348  00021348  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  08011358  08011358  00030108  2**0
+  5 .preinit_array 00000000  08011350  08011350  00030120  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  08011358  08011358  00021358  2**2
+  6 .init_array   00000004  08011350  08011350  00021350  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  0801135c  0801135c  0002135c  2**2
+  7 .fini_array   00000004  08011354  08011354  00021354  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000108  20000000  08011360  00030000  2**2
+  8 .data         00000120  20000000  08011358  00030000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000c20  20000108  08011468  00030108  2**2
+  9 .bss          00000c20  20000120  08011478  00030120  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000d28  08011468  00030d28  2**0
+ 10 ._user_heap_stack 00000600  20000d40  08011478  00030d40  2**0
                   ALLOC
- 11 .ARM.attributes 00000030  00000000  00000000  00030108  2**0
+ 11 .ARM.attributes 00000030  00000000  00000000  00030120  2**0
                   CONTENTS, READONLY
- 12 .comment      00000043  00000000  00000000  00030138  2**0
+ 12 .comment      00000043  00000000  00000000  00030150  2**0
                   CONTENTS, READONLY
- 13 .debug_info   000155fa  00000000  00000000  0003017b  2**0
+ 13 .debug_info   00015609  00000000  00000000  00030193  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00003a75  00000000  00000000  00045775  2**0
+ 14 .debug_abbrev 00003a75  00000000  00000000  0004579c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 000010d8  00000000  00000000  000491f0  2**3
+ 15 .debug_aranges 000010d8  00000000  00000000  00049218  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_rnglists 00000cc7  00000000  00000000  0004a2c8  2**0
+ 16 .debug_rnglists 00000cc7  00000000  00000000  0004a2f0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  0001a565  00000000  00000000  0004af8f  2**0
+ 17 .debug_macro  0001a565  00000000  00000000  0004afb7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0001822f  00000000  00000000  000654f4  2**0
+ 18 .debug_line   00018231  00000000  00000000  0006551c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    00097aed  00000000  00000000  0007d723  2**0
+ 19 .debug_str    00097aef  00000000  00000000  0007d74d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  000044b0  00000000  00000000  00115210  2**2
+ 20 .debug_frame  000044b0  00000000  00000000  0011523c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000078  00000000  00000000  001196c0  2**0
+ 21 .debug_line_str 00000078  00000000  00000000  001196ec  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -62,7 +62,7 @@ Disassembly of section .text:
  80001aa:	2301      	movs	r3, #1
  80001ac:	7023      	strb	r3, [r4, #0]
  80001ae:	bd10      	pop	{r4, pc}
- 80001b0:	20000108 	.word	0x20000108
+ 80001b0:	20000120 	.word	0x20000120
  80001b4:	00000000 	.word	0x00000000
  80001b8:	0800922c 	.word	0x0800922c
 
@@ -75,7 +75,7 @@ Disassembly of section .text:
  80001c6:	f3af 8000 	nop.w
  80001ca:	bd08      	pop	{r3, pc}
  80001cc:	00000000 	.word	0x00000000
- 80001d0:	2000010c 	.word	0x2000010c
+ 80001d0:	20000124 	.word	0x20000124
  80001d4:	0800922c 	.word	0x0800922c
 
 080001d8 <__aeabi_uldivmod>:
@@ -359,7 +359,7 @@ Disassembly of section .text:
 int main(void)
 {
  80004d4:	b580      	push	{r7, lr}
- 80004d6:	b082      	sub	sp, #8
+ 80004d6:	b084      	sub	sp, #16
  80004d8:	af00      	add	r7, sp, #0
   /* USER CODE END 1 */
 
@@ -419,13 +419,13 @@ int main(void)
 
 		//This button is going to be MB1, so it goes in the 0th location in the first byte of the
 		//buffer
-		input_buff[3] |= 0x10;
+		input_buff[0] |= 0x1;
  800051e:	4b48      	ldr	r3, [pc, #288]	; (8000640 <main+0x16c>)
- 8000520:	78db      	ldrb	r3, [r3, #3]
- 8000522:	f043 0310 	orr.w	r3, r3, #16
+ 8000520:	781b      	ldrb	r3, [r3, #0]
+ 8000522:	f043 0301 	orr.w	r3, r3, #1
  8000526:	b2da      	uxtb	r2, r3
  8000528:	4b45      	ldr	r3, [pc, #276]	; (8000640 <main+0x16c>)
- 800052a:	70da      	strb	r2, [r3, #3]
+ 800052a:	701a      	strb	r2, [r3, #0]
  800052c:	e00b      	b.n	8000546 <main+0x72>
 	} else {
 		HAL_GPIO_WritePin(GPIOC, LED0_Pin, GPIO_PIN_RESET);
@@ -435,13 +435,13 @@ int main(void)
  8000534:	f001 ff48 	bl	80023c8 <HAL_GPIO_WritePin>
 
 		//Clear the value in the first position
-		input_buff[3] &= ~(0x10);
+		input_buff[0] &= ~(0x1);
  8000538:	4b41      	ldr	r3, [pc, #260]	; (8000640 <main+0x16c>)
- 800053a:	78db      	ldrb	r3, [r3, #3]
- 800053c:	f023 0310 	bic.w	r3, r3, #16
+ 800053a:	781b      	ldrb	r3, [r3, #0]
+ 800053c:	f023 0301 	bic.w	r3, r3, #1
  8000540:	b2da      	uxtb	r2, r3
  8000542:	4b3f      	ldr	r3, [pc, #252]	; (8000640 <main+0x16c>)
- 8000544:	70da      	strb	r2, [r3, #3]
+ 8000544:	701a      	strb	r2, [r3, #0]
 	}
 
 	//Configure PC11 to light up the LED1 and act as MB2
@@ -458,13 +458,13 @@ int main(void)
  800055a:	4838      	ldr	r0, [pc, #224]	; (800063c <main+0x168>)
  800055c:	f001 ff34 	bl	80023c8 <HAL_GPIO_WritePin>
 
-		input_buff[3] |= 0x20;
+		input_buff[0] |= 0x2;
  8000560:	4b37      	ldr	r3, [pc, #220]	; (8000640 <main+0x16c>)
- 8000562:	78db      	ldrb	r3, [r3, #3]
- 8000564:	f043 0320 	orr.w	r3, r3, #32
+ 8000562:	781b      	ldrb	r3, [r3, #0]
+ 8000564:	f043 0302 	orr.w	r3, r3, #2
  8000568:	b2da      	uxtb	r2, r3
  800056a:	4b35      	ldr	r3, [pc, #212]	; (8000640 <main+0x16c>)
- 800056c:	70da      	strb	r2, [r3, #3]
+ 800056c:	701a      	strb	r2, [r3, #0]
  800056e:	e00b      	b.n	8000588 <main+0xb4>
 	} else {
 		HAL_GPIO_WritePin(GPIOC, LED1_Pin, GPIO_PIN_RESET);
@@ -473,13 +473,13 @@ int main(void)
  8000574:	4831      	ldr	r0, [pc, #196]	; (800063c <main+0x168>)
  8000576:	f001 ff27 	bl	80023c8 <HAL_GPIO_WritePin>
 
-		input_buff[3] &= ~(0x20);
+		input_buff[0] &= ~(0x2);
  800057a:	4b31      	ldr	r3, [pc, #196]	; (8000640 <main+0x16c>)
- 800057c:	78db      	ldrb	r3, [r3, #3]
- 800057e:	f023 0320 	bic.w	r3, r3, #32
+ 800057c:	781b      	ldrb	r3, [r3, #0]
+ 800057e:	f023 0302 	bic.w	r3, r3, #2
  8000582:	b2da      	uxtb	r2, r3
  8000584:	4b2e      	ldr	r3, [pc, #184]	; (8000640 <main+0x16c>)
- 8000586:	70da      	strb	r2, [r3, #3]
+ 8000586:	701a      	strb	r2, [r3, #0]
 	}
 
 	//Configure PC12 to light up the LED2, act as MB3, and play a sound
@@ -496,13 +496,13 @@ int main(void)
  800059c:	4827      	ldr	r0, [pc, #156]	; (800063c <main+0x168>)
  800059e:	f001 ff13 	bl	80023c8 <HAL_GPIO_WritePin>
 
-		input_buff[3] |= 0x40;
+		input_buff[0] |= 0x4;
  80005a2:	4b27      	ldr	r3, [pc, #156]	; (8000640 <main+0x16c>)
- 80005a4:	78db      	ldrb	r3, [r3, #3]
- 80005a6:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+ 80005a4:	781b      	ldrb	r3, [r3, #0]
+ 80005a6:	f043 0304 	orr.w	r3, r3, #4
  80005aa:	b2da      	uxtb	r2, r3
  80005ac:	4b24      	ldr	r3, [pc, #144]	; (8000640 <main+0x16c>)
- 80005ae:	70da      	strb	r2, [r3, #3]
+ 80005ae:	701a      	strb	r2, [r3, #0]
 
 		//Also play the trumpet sound
 		HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2 + 44), 16384);
@@ -519,41 +519,41 @@ int main(void)
  80005c4:	481d      	ldr	r0, [pc, #116]	; (800063c <main+0x168>)
  80005c6:	f001 feff 	bl	80023c8 <HAL_GPIO_WritePin>
 
-		input_buff[3] &= ~(0x40);
+		input_buff[0] &= ~(0x4);
  80005ca:	4b1d      	ldr	r3, [pc, #116]	; (8000640 <main+0x16c>)
- 80005cc:	78db      	ldrb	r3, [r3, #3]
- 80005ce:	f023 0340 	bic.w	r3, r3, #64	; 0x40
+ 80005cc:	781b      	ldrb	r3, [r3, #0]
+ 80005ce:	f023 0304 	bic.w	r3, r3, #4
  80005d2:	b2da      	uxtb	r2, r3
  80005d4:	4b1a      	ldr	r3, [pc, #104]	; (8000640 <main+0x16c>)
- 80005d6:	70da      	strb	r2, [r3, #3]
+ 80005d6:	701a      	strb	r2, [r3, #0]
 	}
 
 	// Average the array of adc_out values
 	uint32_t adc_sum = 0;
  80005d8:	2300      	movs	r3, #0
- 80005da:	607b      	str	r3, [r7, #4]
+ 80005da:	60fb      	str	r3, [r7, #12]
 	for(int i = 0; i < 64; i++) {
  80005dc:	2300      	movs	r3, #0
- 80005de:	603b      	str	r3, [r7, #0]
+ 80005de:	60bb      	str	r3, [r7, #8]
  80005e0:	e00a      	b.n	80005f8 <main+0x124>
 		adc_sum += adc_out[i];
  80005e2:	4a14      	ldr	r2, [pc, #80]	; (8000634 <main+0x160>)
- 80005e4:	683b      	ldr	r3, [r7, #0]
+ 80005e4:	68bb      	ldr	r3, [r7, #8]
  80005e6:	f832 3013 	ldrh.w	r3, [r2, r3, lsl #1]
  80005ea:	461a      	mov	r2, r3
- 80005ec:	687b      	ldr	r3, [r7, #4]
+ 80005ec:	68fb      	ldr	r3, [r7, #12]
  80005ee:	4413      	add	r3, r2
- 80005f0:	607b      	str	r3, [r7, #4]
+ 80005f0:	60fb      	str	r3, [r7, #12]
 	for(int i = 0; i < 64; i++) {
- 80005f2:	683b      	ldr	r3, [r7, #0]
+ 80005f2:	68bb      	ldr	r3, [r7, #8]
  80005f4:	3301      	adds	r3, #1
- 80005f6:	603b      	str	r3, [r7, #0]
- 80005f8:	683b      	ldr	r3, [r7, #0]
+ 80005f6:	60bb      	str	r3, [r7, #8]
+ 80005f8:	68bb      	ldr	r3, [r7, #8]
  80005fa:	2b3f      	cmp	r3, #63	; 0x3f
  80005fc:	ddf1      	ble.n	80005e2 <main+0x10e>
 	}
 	adc_avg = adc_sum >> 6;  //This divides by 64
- 80005fe:	687b      	ldr	r3, [r7, #4]
+ 80005fe:	68fb      	ldr	r3, [r7, #12]
  8000600:	099b      	lsrs	r3, r3, #6
  8000602:	b29a      	uxth	r2, r3
  8000604:	4b11      	ldr	r3, [pc, #68]	; (800064c <main+0x178>)
@@ -563,44 +563,45 @@ int main(void)
 //	input_buff[5] = xaxis_signed;
 
 	//Fit the 16-bit adc avg into two 8-bit values in little endian
-	input_buff[0] = (uint8_t) adc_avg;
+	uint16_t adc_signed = adc_avg;// - 2048;
  8000608:	4b10      	ldr	r3, [pc, #64]	; (800064c <main+0x178>)
  800060a:	881b      	ldrh	r3, [r3, #0]
- 800060c:	b2da      	uxtb	r2, r3
- 800060e:	4b0c      	ldr	r3, [pc, #48]	; (8000640 <main+0x16c>)
- 8000610:	701a      	strb	r2, [r3, #0]
-	input_buff[1] = (uint8_t) (adc_avg >> 8);
- 8000612:	4b0e      	ldr	r3, [pc, #56]	; (800064c <main+0x178>)
- 8000614:	881b      	ldrh	r3, [r3, #0]
- 8000616:	0a1b      	lsrs	r3, r3, #8
- 8000618:	b29b      	uxth	r3, r3
- 800061a:	b2da      	uxtb	r2, r3
- 800061c:	4b08      	ldr	r3, [pc, #32]	; (8000640 <main+0x16c>)
- 800061e:	705a      	strb	r2, [r3, #1]
+ 800060c:	80fb      	strh	r3, [r7, #6]
+	input_buff[1] = (uint8_t) adc_signed;
+ 800060e:	88fb      	ldrh	r3, [r7, #6]
+ 8000610:	b2da      	uxtb	r2, r3
+ 8000612:	4b0b      	ldr	r3, [pc, #44]	; (8000640 <main+0x16c>)
+ 8000614:	705a      	strb	r2, [r3, #1]
+	input_buff[2] = (uint8_t) (adc_signed >> 8);
+ 8000616:	88fb      	ldrh	r3, [r7, #6]
+ 8000618:	0a1b      	lsrs	r3, r3, #8
+ 800061a:	b29b      	uxth	r3, r3
+ 800061c:	b2da      	uxtb	r2, r3
+ 800061e:	4b08      	ldr	r3, [pc, #32]	; (8000640 <main+0x16c>)
+ 8000620:	709a      	strb	r2, [r3, #2]
 
 	//Send the current buffer to the computer
-	USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, input_buff, 2);
- 8000620:	2202      	movs	r2, #2
- 8000622:	4907      	ldr	r1, [pc, #28]	; (8000640 <main+0x16c>)
- 8000624:	480a      	ldr	r0, [pc, #40]	; (8000650 <main+0x17c>)
- 8000626:	f006 fcf5 	bl	8007014 <USBD_CUSTOM_HID_SendReport>
+	USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, input_buff, 3);
+ 8000622:	2203      	movs	r2, #3
+ 8000624:	4906      	ldr	r1, [pc, #24]	; (8000640 <main+0x16c>)
+ 8000626:	480a      	ldr	r0, [pc, #40]	; (8000650 <main+0x17c>)
+ 8000628:	f006 fcf4 	bl	8007014 <USBD_CUSTOM_HID_SendReport>
 	//USBD_CUSTOM_HID_RecievePacket();
 
 	//Add a short delay
 	HAL_Delay (10);
- 800062a:	200a      	movs	r0, #10
- 800062c:	f000 fc88 	bl	8000f40 <HAL_Delay>
+ 800062c:	200a      	movs	r0, #10
+ 800062e:	f000 fc87 	bl	8000f40 <HAL_Delay>
   {
- 8000630:	e768      	b.n	8000504 <main+0x30>
- 8000632:	bf00      	nop
- 8000634:	200002bc 	.word	0x200002bc
- 8000638:	20000124 	.word	0x20000124
+ 8000632:	e767      	b.n	8000504 <main+0x30>
+ 8000634:	200002d4 	.word	0x200002d4
+ 8000638:	2000013c 	.word	0x2000013c
  800063c:	40020800 	.word	0x40020800
- 8000640:	20000340 	.word	0x20000340
- 8000644:	080092c8 	.word	0x080092c8
- 8000648:	200001cc 	.word	0x200001cc
- 800064c:	2000033c 	.word	0x2000033c
- 8000650:	2000034c 	.word	0x2000034c
+ 8000640:	20000358 	.word	0x20000358
+ 8000644:	080092c0 	.word	0x080092c0
+ 8000648:	200001e4 	.word	0x200001e4
+ 800064c:	20000354 	.word	0x20000354
+ 8000650:	20000364 	.word	0x20000364
 
 08000654 <SystemClock_Config>:
 /**
@@ -859,7 +860,7 @@ static void MX_ADC1_Init(void)
  80007be:	46bd      	mov	sp, r7
  80007c0:	bd80      	pop	{r7, pc}
  80007c2:	bf00      	nop
- 80007c4:	20000124 	.word	0x20000124
+ 80007c4:	2000013c 	.word	0x2000013c
  80007c8:	40012000 	.word	0x40012000
  80007cc:	0f000001 	.word	0x0f000001
 
@@ -931,7 +932,7 @@ static void MX_I2S2_Init(void)
  800081e:	bf00      	nop
  8000820:	bd80      	pop	{r7, pc}
  8000822:	bf00      	nop
- 8000824:	200001cc 	.word	0x200001cc
+ 8000824:	200001e4 	.word	0x200001e4
  8000828:	40003800 	.word	0x40003800
 
 0800082c <MX_USART2_UART_Init>:
@@ -998,7 +999,7 @@ static void MX_USART2_UART_Init(void)
  8000872:	bf00      	nop
  8000874:	bd80      	pop	{r7, pc}
  8000876:	bf00      	nop
- 8000878:	20000274 	.word	0x20000274
+ 8000878:	2000028c 	.word	0x2000028c
  800087c:	40004400 	.word	0x40004400
 
 08000880 <MX_DMA_Init>:
@@ -1468,7 +1469,7 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
  8000b40:	40012000 	.word	0x40012000
  8000b44:	40023800 	.word	0x40023800
  8000b48:	40020000 	.word	0x40020000
- 8000b4c:	2000016c 	.word	0x2000016c
+ 8000b4c:	20000184 	.word	0x20000184
  8000b50:	40026410 	.word	0x40026410
 
 08000b54 <HAL_I2S_MspInit>:
@@ -1697,7 +1698,7 @@ void HAL_I2S_MspInit(I2S_HandleTypeDef* hi2s)
  8000cb0:	40023800 	.word	0x40023800
  8000cb4:	40020800 	.word	0x40020800
  8000cb8:	40020400 	.word	0x40020400
- 8000cbc:	20000214 	.word	0x20000214
+ 8000cbc:	2000022c 	.word	0x2000022c
  8000cc0:	40026070 	.word	0x40026070
 
 08000cc4 <HAL_UART_MspInit>:
@@ -1975,7 +1976,7 @@ void DMA1_Stream4_IRQHandler(void)
  8000db2:	bf00      	nop
  8000db4:	bd80      	pop	{r7, pc}
  8000db6:	bf00      	nop
- 8000db8:	20000214 	.word	0x20000214
+ 8000db8:	2000022c 	.word	0x2000022c
 
 08000dbc <DMA2_Stream0_IRQHandler>:
 
@@ -1999,7 +2000,7 @@ void DMA2_Stream0_IRQHandler(void)
  8000dc6:	bf00      	nop
  8000dc8:	bd80      	pop	{r7, pc}
  8000dca:	bf00      	nop
- 8000dcc:	2000016c 	.word	0x2000016c
+ 8000dcc:	20000184 	.word	0x20000184
 
 08000dd0 <OTG_FS_IRQHandler>:
 
@@ -2023,7 +2024,7 @@ void OTG_FS_IRQHandler(void)
  8000dda:	bf00      	nop
  8000ddc:	bd80      	pop	{r7, pc}
  8000dde:	bf00      	nop
- 8000de0:	20000828 	.word	0x20000828
+ 8000de0:	20000840 	.word	0x20000840
 
 08000de4 <SystemInit>:
   *         configuration.
@@ -2139,13 +2140,13 @@ LoopFillZerobss:
   ldr r0, =_sdata
  8000e44:	20000000 	.word	0x20000000
   ldr r1, =_edata
- 8000e48:	20000108 	.word	0x20000108
+ 8000e48:	20000120 	.word	0x20000120
   ldr r2, =_sidata
- 8000e4c:	08011360 	.word	0x08011360
+ 8000e4c:	08011358 	.word	0x08011358
   ldr r2, =_sbss
- 8000e50:	20000108 	.word	0x20000108
+ 8000e50:	20000120 	.word	0x20000120
   ldr r4, =_ebss
- 8000e54:	20000d28 	.word	0x20000d28
+ 8000e54:	20000d40 	.word	0x20000d40
 
 08000e58 <ADC_IRQHandler>:
  * @retval None       
@@ -2308,7 +2309,7 @@ __weak void HAL_IncTick(void)
  8000f1c:	4770      	bx	lr
  8000f1e:	bf00      	nop
  8000f20:	20000008 	.word	0x20000008
- 8000f24:	20000344 	.word	0x20000344
+ 8000f24:	2000035c 	.word	0x2000035c
 
 08000f28 <HAL_GetTick>:
   * @note This function is declared as __weak to be overwritten in case of other 
@@ -2328,7 +2329,7 @@ __weak uint32_t HAL_GetTick(void)
  8000f34:	f85d 7b04 	ldr.w	r7, [sp], #4
  8000f38:	4770      	bx	lr
  8000f3a:	bf00      	nop
- 8000f3c:	20000344 	.word	0x20000344
+ 8000f3c:	2000035c 	.word	0x2000035c
 
 08000f40 <HAL_Delay>:
   *       implementations in user file.
@@ -5371,7 +5372,7 @@ static uint32_t DMA_CalcBaseAndBitshift(DMA_HandleTypeDef *hdma)
  8001f8c:	4770      	bx	lr
  8001f8e:	bf00      	nop
  8001f90:	aaaaaaab 	.word	0xaaaaaaab
- 8001f94:	08011348 	.word	0x08011348
+ 8001f94:	08011340 	.word	0x08011340
 
 08001f98 <DMA_CheckFifoParam>:
   * @param  hdma       pointer to a DMA_HandleTypeDef structure that contains
@@ -12791,7 +12792,7 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, ui
  8004a5e:	bf00      	nop
  8004a60:	40023c00 	.word	0x40023c00
  8004a64:	40023800 	.word	0x40023800
- 8004a68:	08011330 	.word	0x08011330
+ 8004a68:	08011328 	.word	0x08011328
  8004a6c:	20000000 	.word	0x20000000
  8004a70:	20000004 	.word	0x20000004
 
@@ -13093,7 +13094,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  8004cb4:	4618      	mov	r0, r3
  8004cb6:	bd80      	pop	{r7, pc}
  8004cb8:	40023800 	.word	0x40023800
- 8004cbc:	08011340 	.word	0x08011340
+ 8004cbc:	08011338 	.word	0x08011338
 
 08004cc0 <HAL_RCC_GetPCLK2Freq>:
   * @note   Each time PCLK2 changes, this function must be called to update the
@@ -13119,7 +13120,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  8004cdc:	4618      	mov	r0, r3
  8004cde:	bd80      	pop	{r7, pc}
  8004ce0:	40023800 	.word	0x40023800
- 8004ce4:	08011340 	.word	0x08011340
+ 8004ce4:	08011338 	.word	0x08011338
 
 08004ce8 <HAL_RCCEx_PeriphCLKConfig>:
   *        domain (RTC and RCC_BDCR register expect BKPSRAM) will be reset
@@ -18389,9 +18390,9 @@ static uint8_t USBD_CUSTOM_HID_Setup(USBD_HandleTypeDef *pdev,
             len = MIN(USBD_CUSTOM_HID_REPORT_DESC_SIZE, req->wLength);
  8006f46:	683b      	ldr	r3, [r7, #0]
  8006f48:	88db      	ldrh	r3, [r3, #6]
- 8006f4a:	2b1f      	cmp	r3, #31
+ 8006f4a:	2b36      	cmp	r3, #54	; 0x36
  8006f4c:	bf28      	it	cs
- 8006f4e:	231f      	movcs	r3, #31
+ 8006f4e:	2336      	movcs	r3, #54	; 0x36
  8006f50:	83fb      	strh	r3, [r7, #30]
             pbuf = ((USBD_CUSTOM_HID_ItfTypeDef *)pdev->pUserData[pdev->classId])->pReport;
  8006f52:	687b      	ldr	r3, [r7, #4]
@@ -22487,7 +22488,7 @@ static USBD_StatusTypeDef USBD_SetConfig(USBD_HandleTypeDef *pdev, USBD_SetupReq
  800854a:	46bd      	mov	sp, r7
  800854c:	bd80      	pop	{r7, pc}
  800854e:	bf00      	nop
- 8008550:	20000348 	.word	0x20000348
+ 8008550:	20000360 	.word	0x20000360
 
 08008554 <USBD_GetConfig>:
   * @param  pdev: device instance
@@ -23307,10 +23308,10 @@ void MX_USB_DEVICE_Init(void)
 }
  8008960:	bf00      	nop
  8008962:	bd80      	pop	{r7, pc}
- 8008964:	200000b8 	.word	0x200000b8
- 8008968:	2000034c 	.word	0x2000034c
+ 8008964:	200000d0 	.word	0x200000d0
+ 8008968:	20000364 	.word	0x20000364
  800896c:	2000000c 	.word	0x2000000c
- 8008970:	200000a8 	.word	0x200000a8
+ 8008970:	200000c0 	.word	0x200000c0
 
 08008974 <CUSTOM_HID_Init_FS>:
 /**
@@ -23390,7 +23391,7 @@ static int8_t CUSTOM_HID_OutEvent_FS(uint8_t event_idx, uint8_t state)
  80089ba:	3708      	adds	r7, #8
  80089bc:	46bd      	mov	sp, r7
  80089be:	bd80      	pop	{r7, pc}
- 80089c0:	2000034c 	.word	0x2000034c
+ 80089c0:	20000364 	.word	0x20000364
 
 080089c4 <USBD_FS_DeviceDescriptor>:
   * @param  speed : Current device speed
@@ -23418,7 +23419,7 @@ uint8_t * USBD_FS_DeviceDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  80089dc:	46bd      	mov	sp, r7
  80089de:	f85d 7b04 	ldr.w	r7, [sp], #4
  80089e2:	4770      	bx	lr
- 80089e4:	200000d4 	.word	0x200000d4
+ 80089e4:	200000ec 	.word	0x200000ec
 
 080089e8 <USBD_FS_LangIDStrDescriptor>:
   * @param  speed : Current device speed
@@ -23446,7 +23447,7 @@ uint8_t * USBD_FS_LangIDStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  8008a00:	46bd      	mov	sp, r7
  8008a02:	f85d 7b04 	ldr.w	r7, [sp], #4
  8008a06:	4770      	bx	lr
- 8008a08:	200000e8 	.word	0x200000e8
+ 8008a08:	20000100 	.word	0x20000100
 
 08008a0c <USBD_FS_ProductStrDescriptor>:
   * @param  speed : Current device speed
@@ -23489,7 +23490,7 @@ uint8_t * USBD_FS_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length
  8008a3a:	46bd      	mov	sp, r7
  8008a3c:	bd80      	pop	{r7, pc}
  8008a3e:	bf00      	nop
- 8008a40:	20000628 	.word	0x20000628
+ 8008a40:	20000640 	.word	0x20000640
  8008a44:	08009244 	.word	0x08009244
 
 08008a48 <USBD_FS_ManufacturerStrDescriptor>:
@@ -23518,7 +23519,7 @@ uint8_t * USBD_FS_ManufacturerStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *l
  8008a62:	3708      	adds	r7, #8
  8008a64:	46bd      	mov	sp, r7
  8008a66:	bd80      	pop	{r7, pc}
- 8008a68:	20000628 	.word	0x20000628
+ 8008a68:	20000640 	.word	0x20000640
  8008a6c:	08009264 	.word	0x08009264
 
 08008a70 <USBD_FS_SerialStrDescriptor>:
@@ -23554,7 +23555,7 @@ uint8_t * USBD_FS_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  8008a8a:	3708      	adds	r7, #8
  8008a8c:	46bd      	mov	sp, r7
  8008a8e:	bd80      	pop	{r7, pc}
- 8008a90:	200000ec 	.word	0x200000ec
+ 8008a90:	20000104 	.word	0x20000104
 
 08008a94 <USBD_FS_ConfigStrDescriptor>:
   * @param  speed : Current device speed
@@ -23597,8 +23598,8 @@ uint8_t * USBD_FS_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  8008ac2:	46bd      	mov	sp, r7
  8008ac4:	bd80      	pop	{r7, pc}
  8008ac6:	bf00      	nop
- 8008ac8:	20000628 	.word	0x20000628
- 8008acc:	08009270 	.word	0x08009270
+ 8008ac8:	20000640 	.word	0x20000640
+ 8008acc:	08009268 	.word	0x08009268
 
 08008ad0 <USBD_FS_InterfaceStrDescriptor>:
   * @param  speed : Current device speed
@@ -23641,8 +23642,8 @@ uint8_t * USBD_FS_InterfaceStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *leng
  8008afe:	46bd      	mov	sp, r7
  8008b00:	bd80      	pop	{r7, pc}
  8008b02:	bf00      	nop
- 8008b04:	20000628 	.word	0x20000628
- 8008b08:	08009284 	.word	0x08009284
+ 8008b04:	20000640 	.word	0x20000640
+ 8008b08:	0800927c 	.word	0x0800927c
 
 08008b0c <Get_SerialNum>:
   * @brief  Create the serial number string descriptor
@@ -23702,8 +23703,8 @@ static void Get_SerialNum(void)
  8008b50:	1fff7a10 	.word	0x1fff7a10
  8008b54:	1fff7a14 	.word	0x1fff7a14
  8008b58:	1fff7a18 	.word	0x1fff7a18
- 8008b5c:	200000ee 	.word	0x200000ee
- 8008b60:	200000fe 	.word	0x200000fe
+ 8008b5c:	20000106 	.word	0x20000106
+ 8008b60:	20000116 	.word	0x20000116
 
 08008b64 <IntToUnicode>:
   * @param  pbuf: pointer to the buffer
@@ -24339,7 +24340,7 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
  8008eea:	3708      	adds	r7, #8
  8008eec:	46bd      	mov	sp, r7
  8008eee:	bd80      	pop	{r7, pc}
- 8008ef0:	20000828 	.word	0x20000828
+ 8008ef0:	20000840 	.word	0x20000840
 
 08008ef4 <USBD_LL_Start>:
   * @brief  Starts the low level portion of the device driver.
@@ -24787,7 +24788,7 @@ void *USBD_static_malloc(uint32_t size)
  800915c:	f85d 7b04 	ldr.w	r7, [sp], #4
  8009160:	4770      	bx	lr
  8009162:	bf00      	nop
- 8009164:	20000d0c 	.word	0x20000d0c
+ 8009164:	20000d24 	.word	0x20000d24
 
 08009168 <USBD_static_free>:
   * @brief  Dummy memory free
@@ -24911,10 +24912,10 @@ USBD_StatusTypeDef USBD_Get_USB_Status(HAL_StatusTypeDef hal_status)
  8009216:	4798      	blx	r3
  8009218:	3601      	adds	r6, #1
  800921a:	e7f2      	b.n	8009202 <__libc_init_array+0x1e>
- 800921c:	08011358 	.word	0x08011358
- 8009220:	08011358 	.word	0x08011358
- 8009224:	08011358 	.word	0x08011358
- 8009228:	0801135c 	.word	0x0801135c
+ 800921c:	08011350 	.word	0x08011350
+ 8009220:	08011350 	.word	0x08011350
+ 8009224:	08011350 	.word	0x08011350
+ 8009228:	08011354 	.word	0x08011354
 
 0800922c <_init>:
  800922c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
