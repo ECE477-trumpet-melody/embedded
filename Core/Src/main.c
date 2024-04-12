@@ -175,9 +175,12 @@ int main(void)
 	adc_avg = adc_sum >> 6;  //This divides by 64
 
 	// Normalize the value from the adc so it is a signed value between -128 and 127
-	uint16_t xaxis_unsigned = adc_avg >> 4; //This divides by 16
-	int8_t xaxis_signed = xaxis_unsigned - 128;
-	input_buff[5] = xaxis_signed;
+//	uint16_t xaxis_unsigned = adc_avg >> 4; //This divides by 16
+//	int8_t xaxis_signed = xaxis_unsigned - 128;
+//	input_buff[5] = xaxis_signed;
+
+	input_buff[5] = adc_avg >> 4;
+
 
 	//Send the current buffer to the computer
 	USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, input_buff, 20);
