@@ -65,7 +65,7 @@
 #define USBD_VID     1118
 #define USBD_LANGID_STRING     1033
 #define USBD_MANUFACTURER_STRING     "@Microsoft"
-#define USBD_PID_FS     0x028E
+#define USBD_PID_FS     654
 #define USBD_PRODUCT_STRING_FS     "STM32 Custom Human interface"
 #define USBD_CONFIGURATION_STRING_FS     "Custom HID Config"
 #define USBD_INTERFACE_STRING_FS     "Custom HID Interface"
@@ -154,24 +154,24 @@ USBD_DescriptorsTypeDef FS_Desc =
 /** USB standard device descriptor. */
 __ALIGN_BEGIN uint8_t USBD_FS_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END =
 {
-		 18,                       /*bLength */
-		    1,       									/*bDescriptorType*/
-		    0x00,                     /* bcdUSB */
-		    0x02,
-		    DEVICE_CLASS,             /*bDeviceClass*/
-		    DEVICE_SUBCLASS,          /*bDeviceSubClass*/
-		    DEVICE_PROTOCOL,          /*bDeviceProtocol*/
-		    USB_MAX_EP0_SIZE,         /*bMaxPacketSize*/			// --> EP0_SIZE dando problema
-		    LOBYTE(VENDOR_ID),        /*idVendor*/
-		    HIBYTE(VENDOR_ID),        /*idVendor*/
-		    LOBYTE(PRODUCT_ID),       /*idVendor*/
-		    HIBYTE(PRODUCT_ID),       /*idVendor*/
-		    LOBYTE(DEVICE_VERSION),   /*bcdDevice rel. 2.00*/
-		    HIBYTE(DEVICE_VERSION),
-		    1,           							/*Index of manufacturer  string*/
-		    2,								       	/*Index of product string*/
-		    3,        								/*Index of serial number string*/
-		    1  												/*bNumConfigurations*/
+		18,                       /*bLength */
+		1,       									/*bDescriptorType*/
+		0x00,                     /* bcdUSB */
+		0x02,
+		DEVICE_CLASS,             /*bDeviceClass*/
+		DEVICE_SUBCLASS,          /*bDeviceSubClass*/
+		DEVICE_PROTOCOL,          /*bDeviceProtocol*/
+		USB_MAX_EP0_SIZE,         /*bMaxPacketSize*/			// --> EP0_SIZE dando problema
+		LOBYTE(VENDOR_ID),        /*idVendor*/
+		HIBYTE(VENDOR_ID),        /*idVendor*/
+		LOBYTE(PRODUCT_ID),       /*idVendor*/
+		HIBYTE(PRODUCT_ID),       /*idVendor*/
+		LOBYTE(DEVICE_VERSION),   /*bcdDevice rel. 2.00*/
+		HIBYTE(DEVICE_VERSION),
+		1,           							/*Index of manufacturer  string*/
+		2,								       	/*Index of product string*/
+		3,        								/*Index of serial number string*/
+		1  												/*bNumConfigurations*/
 };
 
 /* USB_DeviceDescriptor */

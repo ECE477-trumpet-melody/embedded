@@ -19,7 +19,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_device.h"
-#include "usbd_customhid.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -55,7 +54,7 @@ UART_HandleTypeDef huart2;
 
 extern USBD_HandleTypeDef hUsbDeviceFS;
 
-uint16_t adc_out[64];
+uint16_t adc_out[32] = {0};
 uint16_t adc_avg;
 uint8_t input_buff[20] = {0};	//Buffer for holding inputs to send to the computer
 
@@ -112,11 +111,9 @@ int main(void)
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&adc_out, 64);
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&adc_out, 32);
 
   //HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass + 44), 3297);
-
-
 
   /* USER CODE END 2 */
 
@@ -160,7 +157,7 @@ int main(void)
 		input_buff[3] |= 0x40;
 
 		//Also play the trumpet sound
-		HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2 + 44), 16384);
+		//HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2 + 44), 16384);
 	} else {
 		HAL_GPIO_WritePin(GPIOC, LED2_Pin, GPIO_PIN_RESET);
 
@@ -169,22 +166,15 @@ int main(void)
 
 	// Average the array of adc_out values
 	uint32_t adc_sum = 0;
-	for(int i = 0; i < 64; i++) {
+	for(int i = 0; i < 32; i++) {
 		adc_sum += adc_out[i];
 	}
-	adc_avg = adc_sum >> 6;  //This divides by 64
+	adc_avg = adc_sum >> 5;  //This divides by 32
 
-	// Normalize the value from the adc so it is a signed value between -128 and 127
-//	uint16_t xaxis_unsigned = adc_avg >> 4; //This divides by 16
-//	int8_t xaxis_signed = xaxis_unsigned - 128;
-//	input_buff[5] = xaxis_signed;
-
-	input_buff[5] = adc_avg >> 4;
-
+	input_buff[5] = adc_avg >> 4;	//This divides by 16 to get a 12-bit value to an 8-bit value
 
 	//Send the current buffer to the computer
 	USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, input_buff, 20);
-	//USBD_CUSTOM_HID_RecievePacket();
 
 	//Add a short delay
 	HAL_Delay (10);

@@ -22,6 +22,7 @@
 #include "usbd_custom_hid_if.h"
 
 /* USER CODE BEGIN INCLUDE */
+#include "audio_samples.h"
 
 /* USER CODE END INCLUDE */
 
@@ -31,6 +32,7 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
+extern I2S_HandleTypeDef hi2s2;
 
 /* USER CODE END PV */
 
@@ -236,15 +238,20 @@ static int8_t CUSTOM_HID_OutEvent_FS(uint8_t* buff)
   /* USER CODE BEGIN 6 */
 
 	// Read the first 8 bytes of buff
-	uint8_t* byte0 = buff[0];
-	uint8_t* byte1 = buff[1];
-	uint8_t* byte2 = buff[2];
-	uint8_t* byte3 = buff[3];
-	uint8_t* byte4 = buff[4];
-	uint8_t* byte5 = buff[5];
-	uint8_t* byte6 = buff[6];
-	uint8_t* byte7 = buff[7];
-	uint8_t* byte8 = buff[8];
+	uint8_t byte0 = buff[0];
+	uint8_t byte1 = buff[1];
+	uint8_t byte2 = buff[2];
+	uint8_t byte3 = buff[3];
+	uint8_t byte4 = buff[4];
+	uint8_t byte5 = buff[5];
+	uint8_t byte6 = buff[6];
+	uint8_t byte7 = buff[7];
+	uint8_t byte8 = buff[8];
+
+	// If buff[0] is 0, then this is a rumble packet
+	if(buff[0] == 0) {
+		HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2 + 44), 16384);
+	}
 
 
   /* Start next USB packet transfer once data processing is completed */
