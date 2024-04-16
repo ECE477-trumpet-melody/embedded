@@ -236,21 +236,39 @@ static int8_t CUSTOM_HID_DeInit_FS(void)
 static int8_t CUSTOM_HID_OutEvent_FS(uint8_t* buff)
 {
   /* USER CODE BEGIN 6 */
-
-	// Read the first 8 bytes of buff
-	uint8_t byte0 = buff[0];
-	uint8_t byte1 = buff[1];
-	uint8_t byte2 = buff[2];
-	uint8_t byte3 = buff[3];
-	uint8_t byte4 = buff[4];
-	uint8_t byte5 = buff[5];
-	uint8_t byte6 = buff[6];
-	uint8_t byte7 = buff[7];
-	uint8_t byte8 = buff[8];
-
 	// If buff[0] is 0, then this is a rumble packet
 	if(buff[0] == 0) {
-		HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2 + 44), 16384);
+		uint8_t weak_mag = buff[4];
+		uint8_t strong_mag = buff[3];
+
+		//First check the weak mag for the type of note to play
+		if (weak_mag > 12 && weak_mag < 35) {
+			HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(good_low), 16024);
+		} else if (weak_mag > 38 && weak_mag < 61) {
+			HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(good_mid), 16302);
+		} else if (weak_mag > 63 && weak_mag < 87) {
+			HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(good_high), 16036);
+		} else if (weak_mag > 89 && weak_mag < 112) {
+			HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(bad_low), 24424);
+		} else if (weak_mag > 115 && weak_mag < 138) {
+			HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(bad_mid), 24424);
+		} else if (weak_mag > 140 && weak_mag < 163) {
+			HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(bad_high), 24424);
+		} else if (weak_mag > 166) {
+			//Any value greater than 166 says that one of the random sounds should be played
+			//We select the random sound based on the number given in the strong mag, each
+			//value gets an equal range
+			if (strong_mag < 64) {
+				HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(noise_scream), 40246);
+			} else if (strong_mag < 128) {
+				HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(mario_oof), 14612);
+			} else if (strong_mag < 192) {
+				HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(metal_pipe), 38118);
+			} else if (strong_mag < 256) {
+				HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(mario_party_miss), 22074);
+			}
+
+		}
 	}
 
 

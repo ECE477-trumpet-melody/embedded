@@ -113,8 +113,6 @@ int main(void)
 
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&adc_out, 32);
 
-  //HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass + 44), 3297);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -125,42 +123,24 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	//Configure PC10 to light up the LED0 and act as MB1
+	//Configure the green button to act as button 1 on an Xbox 360 controller
 	if(HAL_GPIO_ReadPin(GPIOC, Green_Button_Pin) == GPIO_PIN_SET) {
-		HAL_GPIO_WritePin(GPIOC, LED0_Pin, GPIO_PIN_SET);
-
-		//This button is going to be MB1, so it goes in the 0th location in the first byte of the
-		//buffer
 		input_buff[3] |= 0x10;
 	} else {
-		HAL_GPIO_WritePin(GPIOC, LED0_Pin, GPIO_PIN_RESET);
-
-		//Clear the value in the first position
 		input_buff[3] &= ~(0x10);
 	}
 
-	//Configure PC11 to light up the LED1 and act as MB2
+	//Configure the red button to act as button 2 on an Xbox 360 controller
 	if(HAL_GPIO_ReadPin(GPIOC, Red_Button_Pin) == GPIO_PIN_SET) {
-		HAL_GPIO_WritePin(GPIOC, LED1_Pin, GPIO_PIN_SET);
-
 		input_buff[3] |= 0x20;
 	} else {
-		HAL_GPIO_WritePin(GPIOC, LED1_Pin, GPIO_PIN_RESET);
-
 		input_buff[3] &= ~(0x20);
 	}
 
-	//Configure PC12 to light up the LED2, act as MB3, and play a sound
+	//Configure the yellow button to act as button 3 on an Xbox 360 controller
 	if(HAL_GPIO_ReadPin(GPIOC, Yellow_Button_Pin) == GPIO_PIN_SET) {
-		HAL_GPIO_WritePin(GPIOC, LED2_Pin, GPIO_PIN_SET);
-
 		input_buff[3] |= 0x40;
-
-		//Also play the trumpet sound
-		//HAL_I2S_Transmit_DMA(&hi2s2, (uint16_t*)(brass2 + 44), 16384);
 	} else {
-		HAL_GPIO_WritePin(GPIOC, LED2_Pin, GPIO_PIN_RESET);
-
 		input_buff[3] &= ~(0x40);
 	}
 

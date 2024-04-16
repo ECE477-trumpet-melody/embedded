@@ -1,7 +1,7 @@
 USB_DEVICE/App/usbd_custom_hid_if.o: \
  ../USB_DEVICE/App/usbd_custom_hid_if.c \
  ../USB_DEVICE/App/usbd_custom_hid_if.h \
- C:/Users/cpwalker/Documents/477_embedded_code/Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Inc/usbd_customhid.h \
+ C:/Users/clwal/OneDrive\ -\ purdue.edu/Year\ 4/Semester\ 2/ECE\ 47700/test_new/Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Inc/usbd_customhid.h \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
  ../USB_DEVICE/Target/usbd_conf.h ../Core/Inc/main.h \
@@ -45,7 +45,7 @@ USB_DEVICE/App/usbd_custom_hid_if.o: \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h \
  ../Core/Inc/audio_samples.h
 ../USB_DEVICE/App/usbd_custom_hid_if.h:
-C:/Users/cpwalker/Documents/477_embedded_code/Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Inc/usbd_customhid.h:
+C:/Users/clwal/OneDrive\ -\ purdue.edu/Year\ 4/Semester\ 2/ECE\ 47700/test_new/Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Inc/usbd_customhid.h:
 ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
 ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
 ../USB_DEVICE/Target/usbd_conf.h:

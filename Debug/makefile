@@ -64,8 +64,8 @@ all: main-build
 main-build: test_new.elf secondary-outputs
 
 # Tool invocations
-test_new.elf test_new.map: $(OBJS) $(USER_OBJS) C:\Users\cpwalker\Documents\477_embedded_code\STM32F411RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "test_new.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\cpwalker\Documents\477_embedded_code\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test_new.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+test_new.elf test_new.map: $(OBJS) $(USER_OBJS) C:\Users\clwal\OneDrive\ -\ purdue.edu\Year\ 4\Semester\ 2\ECE\ 47700\test_new\STM32F411RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "test_new.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\clwal\OneDrive - purdue.edu\Year 4\Semester 2\ECE 47700\test_new\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test_new.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
